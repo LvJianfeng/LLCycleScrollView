@@ -1,0 +1,76 @@
+//
+//  ViewController.swift
+//  LLCycleScrollView
+//
+//  Created by LvJianfeng on 2016/11/22.
+//  Copyright © 2016年 LvJianfeng. All rights reserved.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    var bannerDemo2: LLCycleScrollView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        let w = UIScreen.main.bounds.width
+        let imagesURLStrings = [
+        "http://www.g-photography.net/file_picture/3/3587/4.jpg",
+        "http://img2.zjolcdn.com/pic/0/13/66/56/13665652_914292.jpg",
+        "http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg",
+        "http://img3.redocn.com/tupian/20150806/weimeisheyingtupian_4779232.jpg"
+        ];
+        
+        // 图片配文字
+        let titles = ["感谢您的支持",
+        "如果代码在使用过程中出现问题",
+        "您可以发邮件到coderjianfeng@foxmail.com",
+        ];
+        
+        
+        // Demo--点击回调
+        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: 0, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in
+            print("当前点击图片的位置为:\(index)")
+        })
+        scrollView.addSubview(bannerDemo)
+        
+        // Demo--延时加载数据之滚动方向控制
+        let bannerDemo1 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: 205, width: w, height: 200))
+        // 垂直滚动
+        bannerDemo1.scrollDirection = .vertical
+        scrollView.addSubview(bannerDemo1)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            bannerDemo1.imagePaths = imagesURLStrings
+        }
+        
+        // Demo--其他属性
+        bannerDemo2 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: 410, width: w, height: 200))
+        // 滚动间隔时间
+        bannerDemo2.autoScrollTimeInterval = 3.0
+        // 加载状态图
+        bannerDemo2.placeHolderImage = #imageLiteral(resourceName: "s1")
+        // 没有数据时候的封面图
+        bannerDemo2.coverImage = #imageLiteral(resourceName: "s2")
+        scrollView.addSubview(bannerDemo2)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            self.bannerDemo2.imagePaths = imagesURLStrings
+        }
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollView.contentSize = CGSize.init(width: 0, height: bannerDemo2.ll_y+220)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+
+}
+
