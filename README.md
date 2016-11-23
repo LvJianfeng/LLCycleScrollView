@@ -19,6 +19,7 @@
 
 ## Future
 
+* 支持CocoaPods
 * 支持纯文本
 * 替换PageControl
 * 优化代码
