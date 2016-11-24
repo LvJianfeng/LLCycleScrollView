@@ -17,9 +17,14 @@
 * 支持手势滑动
 * 支持点击回调
 
+## CocoaPods
+* 支持CocoaPods
+```ruby
+pod 'LLCycleScrollView'
+```
+
 ## Future
 
-* 支持CocoaPods
 * 支持纯文本
 * 替换PageControl
 * 优化代码
