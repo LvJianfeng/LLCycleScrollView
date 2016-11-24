@@ -28,7 +28,7 @@ pod 'LLCycleScrollView'
 ## Future
 
 * 支持纯文本
-* 支持xib
+* 支持Storyboard
 * 替换PageControl
 * 优化代码
 
