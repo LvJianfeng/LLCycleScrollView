@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/LvJianfeng/LLCycleScrollView.git", :tag => "#{s.version}" }
   s.source_files  = "Lib/LLCycleScrollView/**/*.{swift}"
   s.resource  = "Lib/LLCycleScrollView.bundle"
-  s.framework  = "Kingfisher"
+  s.dependency 'Kingfisher'
   s.requires_arc = true
 end
