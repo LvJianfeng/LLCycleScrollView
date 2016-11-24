@@ -1,7 +1,7 @@
 # iOS图片轮播 LLCycleScrollView
 
-[![License](https://img.shields.io/cocoapods/l/PageControls.svg?style=flat)](http://cocoapods.org/pods/PageControls)
-[![Platform](https://img.shields.io/cocoapods/p/PageControls.svg?style=flat)](http://cocoapods.org/pods/PageControls)
+[![License](https://img.shields.io/cocoapods/l/LLCycleScrollView.svg?style=flat)](http://cocoapods.org/pods/LLCycleScrollView)
+[![Platform](https://img.shields.io/cocoapods/p/LLCycleScrollView.svg?style=flat)](http://cocoapods.org/pods/LLCycleScrollView)
 
 <img src="https://github.com/LvJianfeng/LLCycleScrollView/blob/master/screen.gif" width="400" align="center">
 

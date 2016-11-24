@@ -21,6 +21,7 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
             }
         }
     }
+    
     // 无限循环，默认true 此属性修改了就不存在轮播的意义了
     open var infiniteLoop: Bool? = true {
         didSet {
@@ -30,6 +31,7 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
             }
         }
     }
+    
     // 滚动方向，默认horizontal
     open var scrollDirection: UICollectionViewScrollDirection? = .horizontal {
         didSet {
@@ -41,12 +43,14 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
             }
         }
     }
+    
     // 滚动间隔时间,默认2s
     open var autoScrollTimeInterval: TimeInterval? = 2.0 {
         didSet {
             autoScroll = true
         }
     }
+    
     // 加载状态图 -- 这个是有数据，等待加载的占位图
     open var placeHolderImage: UIImage? = nil {
         didSet {
@@ -55,6 +59,7 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
             }
         }
     }
+    
     // 空数据页面显示占位图 -- 这个是没有数据，整个轮播器的占位图
     open var coverImage: UIImage? = nil {
         didSet {
@@ -86,12 +91,16 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     // MARK: Private
     // Identifier
     fileprivate let identifier = "LLCycleScrollViewCell"
+    
     // 数量
     fileprivate var totalItemsCount: NSInteger! = 1
+    
     // 显示图片(CollectionView)
     fileprivate var collectionView: UICollectionView!
+    
     // 方向(swift后没有none，只能指定了)
     fileprivate var position: UICollectionViewScrollPosition! = .centeredHorizontally
+    
     // FlowLayout
     lazy fileprivate var flowLayout: UICollectionViewFlowLayout? = {
         let tempFlowLayout = UICollectionViewFlowLayout.init()
@@ -99,16 +108,25 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         tempFlowLayout.scrollDirection = .horizontal
         return tempFlowLayout
     }()
+    
     // 计时器
     fileprivate var timer: Timer?
+    
     // PageControl
     fileprivate var pageControl: UIPageControl?
+    
     // 加载状态图
     fileprivate var placeHolderViewImage: UIImage! = UIImage.init(named: "LLCycleScrollView.bundle/llplaceholder.png")
+    
     // 空数据页面显示占位图
     fileprivate var coverViewImage: UIImage! = UIImage.init(named: "LLCycleScrollView.bundle/llplaceholder.png")
     
+    // 背景色
+    fileprivate var collectionViewBackgroundColor: UIColor! = UIColor.clear
+    
+    // 回调
     var lldidSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -148,7 +166,7 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     private func setupMainView() {
         collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: flowLayout!)
         collectionView.register(LLCycleScrollViewCell.self, forCellWithReuseIdentifier: identifier)
-        collectionView.backgroundColor = UIColor.lightGray
+        collectionView.backgroundColor = collectionViewBackgroundColor
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
