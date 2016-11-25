@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
-@IBDesignable class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
+@IBDesignable open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     // MARK: 控制参数
     // 是否自动滚动，默认true
     @IBInspectable open var autoScroll: Bool? = true {
@@ -151,7 +151,7 @@ typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     
     
     // MARK: -
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupMainView()
     }
@@ -197,7 +197,7 @@ typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     }
     
     // MARK: layoutSubviews
-    override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         // Cell Size
         flowLayout?.itemSize = self.frame.size
@@ -249,11 +249,11 @@ typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     
     
     // MARK: UICollectionViewDataSource
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return totalItemsCount
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: LLCycleScrollViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! LLCycleScrollViewCell
         
         // 0==count 占位图
@@ -273,26 +273,26 @@ typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let didSelectItemAtIndexPath = lldidSelectItemAtIndex {
             didSelectItemAtIndexPath(pageControlIndexWithCurrentCellIndex(index: indexPath.item))
         }
     }
     
     // MARK: UIScrollViewDelegate
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if imagePaths.count == 0 {return}
         let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
         pageControl?.currentPage = indexOnPageControl
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if autoScroll! {
             invalidateTimer()
         }
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if autoScroll! {
             setupTimer()
         }
