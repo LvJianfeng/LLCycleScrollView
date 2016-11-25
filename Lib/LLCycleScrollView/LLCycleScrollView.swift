@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
+public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
 @IBDesignable open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     // MARK: 控制参数
     // 是否自动滚动，默认true
@@ -70,7 +70,7 @@ typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     }
     
     // 背景色
-    @IBInspectable var collectionViewBackgroundColor: UIColor! = UIColor.clear
+    @IBInspectable open var collectionViewBackgroundColor: UIColor! = UIColor.clear
     
     // ImagePaths
     open var imagePaths: Array<String> = [] {
@@ -125,17 +125,17 @@ typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     fileprivate var coverViewImage: UIImage! = UIImage.init(named: "LLCycleScrollView.bundle/llplaceholder.png")
     
     // 回调
-    var lldidSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil
+    open var lldidSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil
     
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         // setupMainView
         setupMainView()
     }
     
     // Class func
-    class func llCycleScrollViewWithFrame(_ frame: CGRect, imageURLPaths: Array<String>? = [], titles:Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
+    open class func llCycleScrollViewWithFrame(_ frame: CGRect, imageURLPaths: Array<String>? = [], titles:Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
         let llcycleScrollView: LLCycleScrollView = LLCycleScrollView.init(frame: frame)
         if (imageURLPaths?.count)! > 0 {
             llcycleScrollView.imagePaths = imageURLPaths!
