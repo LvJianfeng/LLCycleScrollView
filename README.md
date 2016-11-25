@@ -18,6 +18,7 @@
 * 支持点击回调
 * 支持图片数据的延时加载
 * 支持没有数据，占位图占位(仅设置CoverImage(有默认图)即可)
+* 支持Storyboard
 
 ## CocoaPods
 * 支持CocoaPods
@@ -28,7 +29,6 @@ pod 'LLCycleScrollView'
 ## Future
 
 * 支持纯文本
-* 支持Storyboard
 * 替换PageControl
 * 优化代码
 
