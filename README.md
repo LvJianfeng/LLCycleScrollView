@@ -23,7 +23,7 @@
 ## CocoaPods
 * 支持CocoaPods
 ```ruby
-pod 'LLCycleScrollView', '~> 1.1.1'  
+pod 'LLCycleScrollView', '~> 1.1.3'  
 ```
 
 ## Future
