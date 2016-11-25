@@ -10,10 +10,10 @@ import UIKit
 import Kingfisher
 
 typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
-class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
+@IBDesignable class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     // MARK: 控制参数
     // 是否自动滚动，默认true
-    open var autoScroll: Bool? = true {
+    @IBInspectable open var autoScroll: Bool? = true {
         didSet {
             invalidateTimer()
             if autoScroll! {
@@ -23,7 +23,7 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     // 无限循环，默认true 此属性修改了就不存在轮播的意义了
-    open var infiniteLoop: Bool? = true {
+    @IBInspectable open var infiniteLoop: Bool? = true {
         didSet {
             if imagePaths.count > 0 {
                 let temp = imagePaths
@@ -45,14 +45,14 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     // 滚动间隔时间,默认2s
-    open var autoScrollTimeInterval: TimeInterval? = 2.0 {
+    @IBInspectable open var autoScrollTimeInterval: Double = 2.0 {
         didSet {
             autoScroll = true
         }
     }
     
     // 加载状态图 -- 这个是有数据，等待加载的占位图
-    open var placeHolderImage: UIImage? = nil {
+    @IBInspectable open var placeHolderImage: UIImage? = nil {
         didSet {
             if placeHolderImage != nil {
                 placeHolderViewImage = placeHolderImage
@@ -61,13 +61,16 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     // 空数据页面显示占位图 -- 这个是没有数据，整个轮播器的占位图
-    open var coverImage: UIImage? = nil {
+    @IBInspectable open var coverImage: UIImage? = nil {
         didSet {
             if coverImage != nil {
                 coverViewImage = coverImage
             }
         }
     }
+    
+    // 背景色
+    @IBInspectable var collectionViewBackgroundColor: UIColor! = UIColor.clear
     
     // ImagePaths
     open var imagePaths: Array<String> = [] {
@@ -121,17 +124,12 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     // 空数据页面显示占位图
     fileprivate var coverViewImage: UIImage! = UIImage.init(named: "LLCycleScrollView.bundle/llplaceholder.png")
     
-    // 背景色
-    fileprivate var collectionViewBackgroundColor: UIColor! = UIColor.clear
-    
     // 回调
     var lldidSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // initialization
-        initialization()
         // setupMainView
         setupMainView()
     }
@@ -154,12 +152,8 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     
     // MARK: -
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: initialization
-    private func initialization() {
-        
+        super.init(coder: aDecoder)
+        setupMainView()
     }
     
     // MARK: setupMainView
@@ -178,7 +172,7 @@ class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     
     // MARK: Timer
     func setupTimer() {
-        timer = Timer.scheduledTimer(timeInterval: autoScrollTimeInterval!, target: self, selector: #selector(automaticScroll), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: autoScrollTimeInterval as TimeInterval, target: self, selector: #selector(automaticScroll), userInfo: nil, repeats: true)
         RunLoop.main.add(timer!, forMode: .commonModes)
     }
     

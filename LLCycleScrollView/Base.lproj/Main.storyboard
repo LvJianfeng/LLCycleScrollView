@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ipC-Sg-XVA">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -9,6 +9,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="quS-mi-tp7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ipC-Sg-XVA" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tmY-mh-bEx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="LtK-RA-Hq0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C9X-Hw-gxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-274" y="101"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -18,23 +34,48 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LLCycleScrollView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLE-Xe-hMf">
-                                <rect key="frame" x="76" y="28" width="223" height="34"/>
+                                <rect key="frame" x="95.666666666666686" y="28" width="223" height="34"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swift 3 轮播图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noy-bd-lmV">
-                                <rect key="frame" x="129.5" y="72" width="116" height="21"/>
+                                <rect key="frame" x="149" y="72" width="116" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIB-c4-QxE">
-                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="114" width="414" height="622"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQY-9G-4I4" customClass="LLCycleScrollView" customModule="LLCycleScrollView" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1" width="414" height="180"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="180" id="dgz-n4-DoR"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="autoScrollTimeInterval">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="coverImage" value="s2"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="collectionViewBackgroundColor">
+                                                <color key="value" red="1" green="1" blue="0.47938368059999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="placeHolderImage" value="s1"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="MQY-9G-4I4" firstAttribute="top" secondItem="jIB-c4-QxE" secondAttribute="top" constant="1" id="GG2-oQ-0sP"/>
+                                    <constraint firstItem="MQY-9G-4I4" firstAttribute="leading" secondItem="jIB-c4-QxE" secondAttribute="leading" id="SGR-Vb-VOv"/>
+                                    <constraint firstAttribute="trailing" secondItem="MQY-9G-4I4" secondAttribute="trailing" id="cDe-8O-MrL"/>
+                                    <constraint firstAttribute="bottom" secondItem="MQY-9G-4I4" secondAttribute="bottom" id="fsf-XZ-FHC"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -44,18 +85,25 @@
                             <constraint firstItem="noy-bd-lmV" firstAttribute="centerX" secondItem="GLE-Xe-hMf" secondAttribute="centerX" id="8Q9-2c-YGF"/>
                             <constraint firstItem="noy-bd-lmV" firstAttribute="top" secondItem="GLE-Xe-hMf" secondAttribute="bottom" constant="10" id="BZ0-ht-29M"/>
                             <constraint firstItem="GLE-Xe-hMf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="E1L-y7-tGP"/>
+                            <constraint firstItem="MQY-9G-4I4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="IA6-B9-XhW"/>
                             <constraint firstItem="jIB-c4-QxE" firstAttribute="top" secondItem="noy-bd-lmV" secondAttribute="bottom" constant="21" id="Sb7-ds-2VA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jIB-c4-QxE" secondAttribute="bottom" id="gIG-7L-XDt"/>
                             <constraint firstAttribute="trailing" secondItem="jIB-c4-QxE" secondAttribute="trailing" id="yVk-qn-eyk"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2tq-ze-Sdv"/>
                     <connections>
                         <outlet property="scrollView" destination="jIB-c4-QxE" id="wwV-qX-uN8"/>
+                        <outlet property="storyBoardBanner" destination="MQY-9G-4I4" id="8ki-nh-Z7g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="454" y="102"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="s1" width="900" height="314"/>
+        <image name="s2" width="1024" height="356"/>
+    </resources>
 </document>

@@ -11,34 +11,40 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var storyBoardBanner: LLCycleScrollView!
     
     var bannerDemo2: LLCycleScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let w = UIScreen.main.bounds.width
         let imagesURLStrings = [
-        "http://www.g-photography.net/file_picture/3/3587/4.jpg",
-        "http://img2.zjolcdn.com/pic/0/13/66/56/13665652_914292.jpg",
-        "http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg",
-        "http://img3.redocn.com/tupian/20150806/weimeisheyingtupian_4779232.jpg"
+            "http://www.g-photography.net/file_picture/3/3587/4.jpg",
+            "http://img2.zjolcdn.com/pic/0/13/66/56/13665652_914292.jpg",
+            "http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg",
+            "http://img3.redocn.com/tupian/20150806/weimeisheyingtupian_4779232.jpg"
         ];
         
         // 图片配文字
         let titles = ["感谢您的支持",
-        "如果代码在使用过程中出现问题",
-        "您可以发邮件到coderjianfeng@foxmail.com",
-        ];
-        
+                      "如果代码在使用过程中出现问题",
+                      "您可以发邮件到coderjianfeng@foxmail.com",
+                      ];
+        // Storyboard
+        self.storyBoardBanner.imagePaths = imagesURLStrings
+        self.storyBoardBanner.titles = titles
         
         // Demo--点击回调
-        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: 0, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in
+        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in
             print("当前点击图片的位置为:\(index)")
         })
         scrollView.addSubview(bannerDemo)
         
         // Demo--延时加载数据之滚动方向控制
-        let bannerDemo1 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: 205, width: w, height: 200))
+        let bannerDemo1 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo.ll_y + 205, width: w, height: 200))
         // 垂直滚动
         bannerDemo1.scrollDirection = .vertical
         scrollView.addSubview(bannerDemo1)
@@ -47,7 +53,7 @@ class ViewController: UIViewController {
         }
         
         // Demo--其他属性
-        bannerDemo2 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: 410, width: w, height: 200))
+        bannerDemo2 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo1.ll_y + 205, width: w, height: 200))
         // 滚动间隔时间
         bannerDemo2.autoScrollTimeInterval = 3.0
         // 加载状态图
@@ -58,11 +64,6 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             self.bannerDemo2.imagePaths = imagesURLStrings
         }
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         scrollView.contentSize = CGSize.init(width: 0, height: bannerDemo2.ll_y+220)
     }
 
