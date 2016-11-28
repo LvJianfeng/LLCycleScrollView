@@ -36,17 +36,21 @@ class ViewController: UIViewController {
         // Storyboard
         self.storyBoardBanner.imagePaths = imagesURLStrings
         self.storyBoardBanner.titles = titles
+        self.storyBoardBanner.customPageControlStyle = .fill
         
         // Demo--点击回调
         let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in
             print("当前点击图片的位置为:\(index)")
         })
+        bannerDemo.customPageControlStyle = .pill
+        bannerDemo.customPageControlInActiveTintColor = UIColor.red
         scrollView.addSubview(bannerDemo)
         
         // Demo--延时加载数据之滚动方向控制
         let bannerDemo1 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo.ll_y + 205, width: w, height: 200))
         // 垂直滚动
         bannerDemo1.scrollDirection = .vertical
+        bannerDemo1.customPageControlStyle = .snake
         scrollView.addSubview(bannerDemo1)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             bannerDemo1.imagePaths = imagesURLStrings
@@ -60,6 +64,7 @@ class ViewController: UIViewController {
         bannerDemo2.placeHolderImage = #imageLiteral(resourceName: "s1")
         // 没有数据时候的封面图
         bannerDemo2.coverImage = #imageLiteral(resourceName: "s2")
+        bannerDemo2.customPageControlStyle = .none
         scrollView.addSubview(bannerDemo2)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             self.bannerDemo2.imagePaths = imagesURLStrings

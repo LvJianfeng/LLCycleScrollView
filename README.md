@@ -18,18 +18,25 @@
 * 支持点击回调
 * 支持图片数据的延时加载
 * 支持没有数据，占位图占位(仅设置CoverImage(有默认图)即可)
+
+### ~ 1.1.1
+
 * 支持Storyboard
+
+### ~ 1.2.0
+
+* 支持不同类型的PageControl
+* 支持修改PageControl颜色，当前显示颜色等(文件注释)
 
 ## CocoaPods
 * 支持CocoaPods
 ```ruby
-pod 'LLCycleScrollView', '~> 1.1.3'  
+pod 'LLCycleScrollView', '~> 1.2.0'  
 ```
 
 ## Future
 
 * 支持纯文本
-* 替换PageControl
 * 优化代码
 
 ## Example

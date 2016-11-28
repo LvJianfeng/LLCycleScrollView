@@ -9,6 +9,14 @@
 import UIKit
 import Kingfisher
 
+public enum PageControlStyle {
+    case none
+    case system
+    case fill
+    case pill
+    case snake
+}
+
 public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
 @IBDesignable open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     // MARK: 控制参数
@@ -69,6 +77,56 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         }
     }
     
+    // PageControlStyle
+    // MARK: PageControl
+    open var pageControlTintColor: UIColor = UIColor.lightGray {
+        didSet {
+            setupPageControl()
+        }
+    }
+    // 当前显示颜色
+    open var pageControlCurrentPageColor: UIColor = UIColor.white {
+        didSet {
+            setupPageControl()
+        }
+    }
+    
+    // MARK: CustomPageControl
+    // 注意： 由于属性较多，所以请使用style对应的属性，如果没有标明则通用
+    open var customPageControlStyle: PageControlStyle = .system {
+        didSet {
+            setupPageControl()
+        }
+    }
+    // 颜色
+    open var customPageControlTintColor: UIColor = UIColor.white {
+        didSet {
+            setupPageControl()
+        }
+    }
+    // 间距
+    open var customPageControlIndicatorPadding: CGFloat = 8 {
+        didSet {
+            setupPageControl()
+        }
+    }
+    
+    // PageControlStyle == .fill
+    // 圆大小
+    open var FillPageControlIndicatorRadius: CGFloat = 4 {
+        didSet {
+            setupPageControl()
+        }
+    }
+    
+    // PageControlStyle == .pill || PageControlStyle == .snake
+    // 当前的颜色
+    open var customPageControlInActiveTintColor: UIColor = UIColor(white: 1, alpha: 0.3) {
+        didSet {
+            setupPageControl()
+        }
+    }
+    
     // 背景色
     @IBInspectable open var collectionViewBackgroundColor: UIColor! = UIColor.clear
     
@@ -117,6 +175,8 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     
     // PageControl
     fileprivate var pageControl: UIPageControl?
+    
+    fileprivate var customPageControl: UIView?
     
     // 加载状态图
     fileprivate var placeHolderViewImage: UIImage! = UIImage.init(named: "LLCycleScrollView.bundle/llplaceholder.png")
@@ -188,12 +248,51 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         if pageControl != nil {
             pageControl?.removeFromSuperview()
         }
+        if customPageControl != nil {
+            customPageControl?.removeFromSuperview()
+        }
         
-        // warning: 条件判断待添加
+        if customPageControlStyle == .none {
+            pageControl = UIPageControl.init()
+            pageControl?.numberOfPages = self.imagePaths.count
+        }
         
-        pageControl = UIPageControl.init()
-        pageControl?.numberOfPages = self.imagePaths.count
-        self.addSubview(pageControl!)
+        if customPageControlStyle == .system {
+            pageControl = UIPageControl.init()
+            pageControl?.pageIndicatorTintColor = pageControlTintColor
+            pageControl?.currentPageIndicatorTintColor = pageControlCurrentPageColor
+            pageControl?.numberOfPages = self.imagePaths.count
+            self.addSubview(pageControl!)
+            pageControl?.isHidden = false
+        }
+        
+        if customPageControlStyle == .fill {
+            customPageControl = LLFilledPageControl.init(frame: CGRect.zero)
+            customPageControl?.tintColor = customPageControlTintColor
+            (customPageControl as! LLFilledPageControl).indicatorPadding = customPageControlIndicatorPadding
+            (customPageControl as! LLFilledPageControl).indicatorRadius = FillPageControlIndicatorRadius
+            (customPageControl as! LLFilledPageControl).pageCount = self.imagePaths.count
+            self.addSubview(customPageControl!)
+        }
+        
+        if customPageControlStyle == .pill {
+            customPageControl = LLPillPageControl.init(frame: CGRect.zero)
+            (customPageControl as! LLPillPageControl).indicatorPadding = customPageControlIndicatorPadding
+            (customPageControl as! LLPillPageControl).activeTint = customPageControlTintColor
+            (customPageControl as! LLPillPageControl).inactiveTint = customPageControlInActiveTintColor
+            (customPageControl as! LLPillPageControl).pageCount = self.imagePaths.count
+            self.addSubview(customPageControl!)
+        }
+        
+        if customPageControlStyle == .snake {
+            customPageControl = LLSnakePageControl.init(frame: CGRect.zero)
+            (customPageControl as! LLSnakePageControl).activeTint = customPageControlTintColor
+            (customPageControl as! LLSnakePageControl).indicatorPadding = customPageControlIndicatorPadding
+            (customPageControl as! LLSnakePageControl).indicatorRadius = FillPageControlIndicatorRadius
+            (customPageControl as! LLSnakePageControl).inactiveTint = customPageControlInActiveTintColor
+            (customPageControl as! LLSnakePageControl).pageCount = self.imagePaths.count
+            self.addSubview(customPageControl!)
+        }
     }
     
     // MARK: layoutSubviews
@@ -202,7 +301,16 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         // Cell Size
         flowLayout?.itemSize = self.frame.size
         // Page Frame
-        pageControl?.frame = CGRect.init(x: 0, y: self.ll_h-20, width: UIScreen.main.bounds.width, height: 20)
+        if customPageControlStyle == .none || customPageControlStyle == .system {
+            pageControl?.frame = CGRect.init(x: 0, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
+        }else{
+            var y = self.ll_h-10-1
+            if customPageControlStyle == .pill {
+                y+=5
+            }
+            let oldFrame = customPageControl?.frame
+            customPageControl?.frame = CGRect.init(x: (oldFrame?.origin.x)!, y: y, width: (oldFrame?.size.width)!, height: 10)
+        }
         
         if collectionView.contentOffset.x == 0 && totalItemsCount > 0 {
             var targetIndex = 0
@@ -281,9 +389,39 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     
     // MARK: UIScrollViewDelegate
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if imagePaths.count == 0 {return}
+        if imagePaths.count == 0 { return }
         let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
-        pageControl?.currentPage = indexOnPageControl
+        if customPageControlStyle == .none || customPageControlStyle == .system {
+            pageControl?.currentPage = indexOnPageControl
+        }else{
+            var progress: CGFloat = 999
+            if scrollDirection == .horizontal {
+                let currentOffsetX = scrollView.contentOffset.x - (CGFloat(totalItemsCount) * scrollView.frame.size.width) / 2
+                if currentOffsetX == CGFloat(self.imagePaths.count) * scrollView.frame.size.width && infiniteLoop!{
+                    collectionView.scrollToItem(at: IndexPath.init(item: Int(totalItemsCount/2), section: 0), at: position, animated: false)
+                }
+                progress = currentOffsetX / scrollView.frame.size.width
+            }else if scrollDirection == .vertical{
+                let currentOffsetY = scrollView.contentOffset.y - (CGFloat(totalItemsCount) * scrollView.frame.size.height) / 2
+                if currentOffsetY == CGFloat(self.imagePaths.count) * scrollView.frame.size.height && infiniteLoop!{
+                    collectionView.scrollToItem(at: IndexPath.init(item: Int(totalItemsCount/2), section: 0), at: position, animated: false)
+                }
+                progress = currentOffsetY / scrollView.frame.size.height
+            }
+            
+            if progress == 999 {
+                progress = CGFloat(indexOnPageControl)
+            }
+            
+            if customPageControlStyle == .fill {
+                (customPageControl as! LLFilledPageControl).progress = progress
+            }else if customPageControlStyle == .pill {
+                (customPageControl as! LLPillPageControl).progress = progress
+            }else if customPageControlStyle == .snake {
+                (customPageControl as! LLSnakePageControl).progress = progress
+            }
+        }
+        
     }
     
     open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

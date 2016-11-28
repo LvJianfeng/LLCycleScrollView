@@ -38,7 +38,7 @@ class LLCycleScrollViewCell: UICollectionViewCell {
     }
     
     // 标题Label高度
-    var titleLabelHeight: CGFloat! = 40
+    var titleLabelHeight: CGFloat! = 46
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,6 +73,6 @@ class LLCycleScrollViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.frame = self.bounds
-        titleLabel.frame = CGRect.init(x: 0, y: self.ll_h - titleLabelHeight , width: self.ll_w, height: titleLabelHeight)
+        titleLabel.frame = CGRect.init(x: 0, y: self.ll_h - titleLabelHeight, width: self.ll_w, height: titleLabelHeight)
     }
 }
