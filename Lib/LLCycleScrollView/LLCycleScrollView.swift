@@ -305,6 +305,7 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
             pageControl?.frame = CGRect.init(x: 0, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
         }else{
             var y = self.ll_h-10-1
+            // pill
             if customPageControlStyle == .pill {
                 y+=5
             }
@@ -395,6 +396,7 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
             pageControl?.currentPage = indexOnPageControl
         }else{
             var progress: CGFloat = 999
+            // 方向
             if scrollDirection == .horizontal {
                 let currentOffsetX = scrollView.contentOffset.x - (CGFloat(totalItemsCount) * scrollView.frame.size.width) / 2
                 if currentOffsetX == CGFloat(self.imagePaths.count) * scrollView.frame.size.width && infiniteLoop!{
@@ -412,7 +414,7 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
             if progress == 999 {
                 progress = CGFloat(indexOnPageControl)
             }
-            
+            // progress
             if customPageControlStyle == .fill {
                 (customPageControl as! LLFilledPageControl).progress = progress
             }else if customPageControlStyle == .pill {
