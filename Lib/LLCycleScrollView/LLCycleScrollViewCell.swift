@@ -13,7 +13,7 @@ class LLCycleScrollViewCell: UICollectionViewCell {
     // 标题
     var title: String = "" {
         didSet {
-            titleLabel.text = "   \(title)"
+            titleLabel.text = "\(title)"
             
             if title.characters.count > 0 {
                 titleLabel.isHidden = false
@@ -30,19 +30,23 @@ class LLCycleScrollViewCell: UICollectionViewCell {
         }
     }
     
+    
     // 标题背景色
-    var titleLabelBackgroundColor: UIColor = UIColor.black.withAlphaComponent(0.5) {
+    var titleBackViewBackgroundColor: UIColor = UIColor.black.withAlphaComponent(0.3) {
         didSet {
-            titleLabel.backgroundColor = titleLabelBackgroundColor
+            titleLabel.backgroundColor = titleBackViewBackgroundColor
         }
     }
     
+    var titleBackView: UIView!
+    
     // 标题Label高度
-    var titleLabelHeight: CGFloat! = 46
+    var titleLabelHeight: CGFloat! = 56
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupImageView()
+        setupLabelBackView()
         setupTitleLabel()
     }
     
@@ -60,19 +64,30 @@ class LLCycleScrollViewCell: UICollectionViewCell {
         self.contentView.addSubview(imageView)
     }
     
+    // Setup Label BackView
+    fileprivate func setupLabelBackView() {
+        titleBackView = UIView.init()
+        titleBackView.backgroundColor = titleBackViewBackgroundColor
+        self.contentView.addSubview(titleBackView)
+    }
+    
     // Setup Title
     fileprivate func setupTitleLabel() {
         titleLabel = UILabel.init()
         titleLabel.isHidden = true
         titleLabel.textColor = titleLabelTextColor
-        titleLabel.backgroundColor = titleLabelBackgroundColor
-        self.contentView.addSubview(titleLabel)
+        titleLabel.numberOfLines = 2
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        titleLabel.backgroundColor = UIColor.clear
+        titleBackView.addSubview(titleLabel)
     }
     
     // MARK: layoutSubviews
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         imageView.frame = self.bounds
-        titleLabel.frame = CGRect.init(x: 0, y: self.ll_h - titleLabelHeight, width: self.ll_w, height: titleLabelHeight)
+        titleBackView.frame = CGRect.init(x: 0, y: self.ll_h - titleLabelHeight, width: self.ll_w, height: titleLabelHeight)
+        titleLabel.frame = CGRect.init(x: 15, y: 0, width: self.ll_w - 20, height: titleLabelHeight)
     }
 }

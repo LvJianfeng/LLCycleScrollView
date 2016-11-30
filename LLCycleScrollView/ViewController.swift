@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         // 图片配文字
         let titles = ["感谢您的支持",
                       "如果代码在使用过程中出现问题",
-                      "您可以发邮件到coderjianfeng@foxmail.com",
+                      "您可以发邮件到coderjianfeng@foxmail.com您可以发邮件到coderjianfeng@foxmail.com",
                       ];
         // Storyboard
         self.storyBoardBanner.imagePaths = imagesURLStrings

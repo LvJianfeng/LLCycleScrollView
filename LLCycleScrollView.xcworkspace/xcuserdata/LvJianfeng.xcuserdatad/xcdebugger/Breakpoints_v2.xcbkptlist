@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "502005166.822203"
+            filePath = "Lib/LLCycleScrollView/LLCycleScrollViewCell.swift"
+            timestampString = "502180163.182092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
-            landmarkName = "pageControlIndexWithCurrentCellIndex(index:)"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "layoutSubviews()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
