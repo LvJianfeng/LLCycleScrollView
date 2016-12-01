@@ -16,8 +16,10 @@ class LLCycleScrollViewCell: UICollectionViewCell {
             titleLabel.text = "\(title)"
             
             if title.characters.count > 0 {
+                titleBackView.isHidden = false
                 titleLabel.isHidden = false
             }else{
+                titleBackView.isHidden = true
                 titleLabel.isHidden = true
             }
         }
@@ -61,6 +63,9 @@ class LLCycleScrollViewCell: UICollectionViewCell {
     // Setup ImageView
     fileprivate func setupImageView() {
         imageView = UIImageView.init()
+        // 默认模式
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         self.contentView.addSubview(imageView)
     }
     

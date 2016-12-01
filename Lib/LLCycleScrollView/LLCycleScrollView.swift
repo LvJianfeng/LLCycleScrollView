@@ -77,6 +77,13 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         }
     }
     
+    // 图片显示Mode
+    open var imageViewContentMode: UIViewContentMode? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     // PageControlStyle
     // MARK: PageControl
     open var pageControlTintColor: UIColor = UIColor.lightGray {
@@ -371,7 +378,22 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         }else{
             let itemIndex = pageControlIndexWithCurrentCellIndex(index: indexPath.item)
             let imagePath = imagePaths[itemIndex]
-            cell.imageView.kf.setImage(with: URL(string: imagePath), placeholder: placeHolderImage)
+            // Mode
+            if let imageViewContentMode = imageViewContentMode {
+                cell.imageView.contentMode = imageViewContentMode
+            }
+            
+            // 根据imagePath，来判断是网络图片还是本地图
+            if imagePath.hasPrefix("http") {
+                cell.imageView.kf.setImage(with: URL(string: imagePath), placeholder: placeHolderImage)
+            }else{
+                if let image = UIImage.init(named: imagePath) {
+                    cell.imageView.image = image;
+                }else{
+                    cell.imageView.image = UIImage.init(contentsOfFile: imagePath)
+                }
+            }
+            
             // 对冲数据判断
             if itemIndex <= titles.count-1 {
                 cell.title = titles[itemIndex]

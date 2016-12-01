@@ -21,12 +21,18 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let w = UIScreen.main.bounds.width
+        // 网络图，本地图混合
         let imagesURLStrings = [
+            "s3.jpg",
             "http://www.g-photography.net/file_picture/3/3587/4.jpg",
             "http://img2.zjolcdn.com/pic/0/13/66/56/13665652_914292.jpg",
             "http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg",
-            "http://img3.redocn.com/tupian/20150806/weimeisheyingtupian_4779232.jpg"
+            "http://img3.redocn.com/tupian/20150806/weimeisheyingtupian_4779232.jpg",
         ];
+        
+        // let imagesURLStrings = [
+        //     "s3.jpg","s2","s1"
+        // ];
         
         // 图片配文字
         let titles = ["感谢您的支持",
@@ -36,6 +42,8 @@ class ViewController: UIViewController {
         // Storyboard
         self.storyBoardBanner.imagePaths = imagesURLStrings
         self.storyBoardBanner.titles = titles
+        // 新增图片显示控制
+        self.storyBoardBanner.imageViewContentMode = .scaleToFill
         self.storyBoardBanner.customPageControlStyle = .fill
         
         // Demo--点击回调
