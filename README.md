@@ -34,7 +34,7 @@
 ```ruby
 pod 'LLCycleScrollView' 
 ```
-注意：在pod install的时候，比较慢(可能网速问题)，如果在pod update的时候就比较快了，此无解。
+<!--注意：在pod install的时候，比较慢(可能网速问题)，如果在pod update的时候就比较快了，此无解。-->
 ## Future
 
 * 支持纯文本
