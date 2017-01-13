@@ -17,6 +17,12 @@ public enum PageControlStyle {
     case snake
 }
 
+public enum PageControlPosition {
+    case center
+    case left
+    case right
+}
+
 public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
 @IBDesignable open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     // MARK: 控制参数
@@ -118,6 +124,19 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         }
     }
     
+    // PageControl 位置 （此属性目前仅支持系统默认控制器，未来会支持其他自定义PageControl）
+    open var pageControlPosition: PageControlPosition = .center {
+        didSet {
+            setupPageControl()
+        }
+    }
+    
+    open var pageControlLeadingOrTrialingContact: CGFloat = 28 {
+        didSet {
+            setupPageControl()
+        }
+    }
+    
     // PageControlStyle == .fill
     // 圆大小
     open var FillPageControlIndicatorRadius: CGFloat = 4 {
@@ -181,9 +200,9 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     fileprivate var timer: Timer?
     
     // PageControl
-    fileprivate var pageControl: UIPageControl?
+    open var pageControl: UIPageControl?
     
-    fileprivate var customPageControl: UIView?
+    open var customPageControl: UIView?
     
     // 加载状态图
     fileprivate var placeHolderViewImage: UIImage! = UIImage.init(named: "LLCycleScrollView.bundle/llplaceholder.png")
@@ -309,7 +328,16 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         flowLayout?.itemSize = self.frame.size
         // Page Frame
         if customPageControlStyle == .none || customPageControlStyle == .system {
-            pageControl?.frame = CGRect.init(x: 0, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
+            if pageControlPosition == .center {
+                pageControl?.frame = CGRect.init(x: 0, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
+            }else{
+                let pointSize = pageControl?.size(forNumberOfPages: self.imagePaths.count)
+                if pageControlPosition == .right {
+                    pageControl?.frame = CGRect.init(x: -(UIScreen.main.bounds.width - (pointSize?.width)! - pageControlLeadingOrTrialingContact) * 0.5, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
+                }else{
+                    pageControl?.frame = CGRect.init(x: (UIScreen.main.bounds.width - (pointSize?.width)! - pageControlLeadingOrTrialingContact) * 0.5, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
+                }
+            }
         }else{
             var y = self.ll_h-10-1
             // pill

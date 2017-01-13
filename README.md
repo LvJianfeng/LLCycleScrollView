@@ -19,11 +19,13 @@
 * 支持图片数据的延时加载
 * 支持没有数据，占位图占位(仅设置CoverImage(有默认图)即可)
 * 支持本地图片显示及与网络图的混合显示
+* 支持系统UIPageControl位置设置
 
 ## Update
 
 版本信息 | 更新描述
 ----    |  ------
+1.2.4   | * 支持系统UIPageControl位置设置，其属性pageControlPosition<br>* 公开pageControl及customPageControl两个控件，方便控制及自定义
 1.2.3   | * 支持本地图片显示及与网络图的混合显示<br>* 增加图片contentMode的控制
 1.2.2   | * 标题显示两行文字
 1.2.1   | * 支持不同类型的PageControl<br>* 支持修改PageControl颜色，当前显示颜色等(文件注释)

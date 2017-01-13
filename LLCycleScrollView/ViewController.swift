@@ -44,7 +44,8 @@ class ViewController: UIViewController {
         self.storyBoardBanner.titles = titles
         // 新增图片显示控制
         self.storyBoardBanner.imageViewContentMode = .scaleToFill
-        self.storyBoardBanner.customPageControlStyle = .fill
+        self.storyBoardBanner.pageControlPosition = .left
+        
         
         // Demo--点击回调
         let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in

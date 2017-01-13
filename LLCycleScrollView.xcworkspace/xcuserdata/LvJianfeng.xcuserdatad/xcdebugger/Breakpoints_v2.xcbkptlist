@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "502271922.353391"
+            timestampString = "505965006.372839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "setupPageControl()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "502271922.353391"
+            timestampString = "505965006.372839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "setupPageControl()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "502271922.353391"
+            timestampString = "505965006.372839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "setupPageControl()"
             landmarkType = "7">
          </BreakpointContent>
