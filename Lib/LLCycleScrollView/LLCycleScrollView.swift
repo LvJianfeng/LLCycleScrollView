@@ -448,14 +448,22 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
             var progress: CGFloat = 999
             // 方向
             if scrollDirection == .horizontal {
-                let currentOffsetX = scrollView.contentOffset.x - (CGFloat(totalItemsCount) * scrollView.frame.size.width) / 2
-                if currentOffsetX == CGFloat(self.imagePaths.count) * scrollView.frame.size.width && infiniteLoop!{
+                var currentOffsetX = scrollView.contentOffset.x - (CGFloat(totalItemsCount) * scrollView.frame.size.width) / 2
+                if currentOffsetX < 0 {
+                    currentOffsetX = -currentOffsetX
+                }
+                print("currentOffsetX:\(currentOffsetX)")
+                print("MaxWidth:\(CGFloat(self.imagePaths.count) * scrollView.frame.size.width)")
+                if currentOffsetX >= CGFloat(self.imagePaths.count) * scrollView.frame.size.width && infiniteLoop!{
                     collectionView.scrollToItem(at: IndexPath.init(item: Int(totalItemsCount/2), section: 0), at: position, animated: false)
                 }
                 progress = currentOffsetX / scrollView.frame.size.width
             }else if scrollDirection == .vertical{
-                let currentOffsetY = scrollView.contentOffset.y - (CGFloat(totalItemsCount) * scrollView.frame.size.height) / 2
-                if currentOffsetY == CGFloat(self.imagePaths.count) * scrollView.frame.size.height && infiniteLoop!{
+                var currentOffsetY = scrollView.contentOffset.y - (CGFloat(totalItemsCount) * scrollView.frame.size.height) / 2
+                if currentOffsetY < 0 {
+                    currentOffsetY = -currentOffsetY
+                }
+                if currentOffsetY >= CGFloat(self.imagePaths.count) * scrollView.frame.size.height && infiniteLoop!{
                     collectionView.scrollToItem(at: IndexPath.init(item: Int(totalItemsCount/2), section: 0), at: position, animated: false)
                 }
                 progress = currentOffsetY / scrollView.frame.size.height
