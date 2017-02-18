@@ -332,7 +332,7 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
                 pageControl?.frame = CGRect.init(x: 0, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
             }else{
                 let pointSize = pageControl?.size(forNumberOfPages: self.imagePaths.count)
-                if pageControlPosition == .right {
+                if pageControlPosition == .left {
                     pageControl?.frame = CGRect.init(x: -(UIScreen.main.bounds.width - (pointSize?.width)! - pageControlLeadingOrTrialingContact) * 0.5, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
                 }else{
                     pageControl?.frame = CGRect.init(x: (UIScreen.main.bounds.width - (pointSize?.width)! - pageControlLeadingOrTrialingContact) * 0.5, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
@@ -452,8 +452,6 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
                 if currentOffsetX < 0 {
                     currentOffsetX = -currentOffsetX
                 }
-                print("currentOffsetX:\(currentOffsetX)")
-                print("MaxWidth:\(CGFloat(self.imagePaths.count) * scrollView.frame.size.width)")
                 if currentOffsetX >= CGFloat(self.imagePaths.count) * scrollView.frame.size.width && infiniteLoop!{
                     collectionView.scrollToItem(at: IndexPath.init(item: Int(totalItemsCount/2), section: 0), at: position, animated: false)
                 }

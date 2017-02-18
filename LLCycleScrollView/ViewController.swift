@@ -44,7 +44,8 @@ class ViewController: UIViewController {
         self.storyBoardBanner.titles = titles
         // 新增图片显示控制
         self.storyBoardBanner.imageViewContentMode = .scaleToFill
-        self.storyBoardBanner.pageControlPosition = .left
+        self.storyBoardBanner.pageControlPosition = .right
+
         
         
         // Demo--点击回调
