@@ -39,12 +39,12 @@ class ViewController: UIViewController {
                       "如果代码在使用过程中出现问题",
                       "您可以发邮件到coderjianfeng@foxmail.com您可以发邮件到coderjianfeng@foxmail.com",
                       ];
-        // Storyboard
-        self.storyBoardBanner.imagePaths = imagesURLStrings
-        self.storyBoardBanner.titles = titles
-        // 新增图片显示控制
-        self.storyBoardBanner.imageViewContentMode = .scaleToFill
-        self.storyBoardBanner.pageControlPosition = .right
+//        // Storyboard
+//        self.storyBoardBanner.imagePaths = imagesURLStrings
+//        self.storyBoardBanner.titles = titles
+//        // 新增图片显示控制
+//        self.storyBoardBanner.imageViewContentMode = .scaleToFill
+//        self.storyBoardBanner.pageControlPosition = .right
 
         
         
@@ -66,20 +66,20 @@ class ViewController: UIViewController {
             bannerDemo1.imagePaths = imagesURLStrings
         }
         
-        // Demo--其他属性
-        bannerDemo2 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo1.ll_y + 205, width: w, height: 200))
-        // 滚动间隔时间
-        bannerDemo2.autoScrollTimeInterval = 3.0
-        // 加载状态图
-        bannerDemo2.placeHolderImage = #imageLiteral(resourceName: "s1")
-        // 没有数据时候的封面图
-        bannerDemo2.coverImage = #imageLiteral(resourceName: "s2")
-        bannerDemo2.customPageControlStyle = .none
-        scrollView.addSubview(bannerDemo2)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            self.bannerDemo2.imagePaths = imagesURLStrings
-        }
-        scrollView.contentSize = CGSize.init(width: 0, height: bannerDemo2.ll_y+220)
+//        // Demo--其他属性
+//        bannerDemo2 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo1.ll_y + 205, width: w, height: 200))
+//        // 滚动间隔时间
+//        bannerDemo2.autoScrollTimeInterval = 3.0
+//        // 加载状态图
+//        bannerDemo2.placeHolderImage = #imageLiteral(resourceName: "s1")
+//        // 没有数据时候的封面图
+//        bannerDemo2.coverImage = #imageLiteral(resourceName: "s2")
+//        bannerDemo2.customPageControlStyle = .none
+//        scrollView.addSubview(bannerDemo2)
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+//            self.bannerDemo2.imagePaths = imagesURLStrings
+//        }
+//        scrollView.contentSize = CGSize.init(width: 0, height: bannerDemo2.ll_y+220)
     }
 
     override func didReceiveMemoryWarning() {

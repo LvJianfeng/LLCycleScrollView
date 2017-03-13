@@ -167,6 +167,13 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
                 collectionView.isScrollEnabled = false
             }
             
+            // 计算最大扩展区大小
+            if scrollDirection == .horizontal {
+                maxSwipeSize = CGFloat(imagePaths.count) * collectionView.frame.width
+            }else{
+                maxSwipeSize = CGFloat(imagePaths.count) * collectionView.frame.height
+            }
+            
             setupPageControl()
             collectionView.reloadData()
         }
@@ -184,6 +191,18 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     
     // 显示图片(CollectionView)
     fileprivate var collectionView: UICollectionView!
+    
+    // 最大伸展空间(防止出现问题，可外部设置)
+    // 用于反方向滑动的时候，需要知道最大的contentSize
+    fileprivate var maxSwipeSize: CGFloat = 0
+    
+    // 暂不开放
+    // 用于反方向滑动的时候，需要知道最大的contentSize
+    // open var maxContentSize: CGFloat = 0 {
+    //    didSet {
+    //        maxSwipeSize = maxContentSize
+    //    }
+    // }
     
     // 方向(swift后没有none，只能指定了)
     fileprivate var position: UICollectionViewScrollPosition! = .centeredHorizontally
@@ -450,7 +469,13 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
             if scrollDirection == .horizontal {
                 var currentOffsetX = scrollView.contentOffset.x - (CGFloat(totalItemsCount) * scrollView.frame.size.width) / 2
                 if currentOffsetX < 0 {
-                    currentOffsetX = -currentOffsetX
+                    if currentOffsetX >= -scrollView.frame.size.width{
+                        currentOffsetX = CGFloat(indexOnPageControl) * scrollView.frame.size.width
+                    }else if currentOffsetX <= -maxSwipeSize{
+                        collectionView.scrollToItem(at: IndexPath.init(item: Int(totalItemsCount/2), section: 0), at: position, animated: false)
+                    }else{
+                        currentOffsetX = maxSwipeSize + currentOffsetX
+                    }
                 }
                 if currentOffsetX >= CGFloat(self.imagePaths.count) * scrollView.frame.size.width && infiniteLoop!{
                     collectionView.scrollToItem(at: IndexPath.init(item: Int(totalItemsCount/2), section: 0), at: position, animated: false)
@@ -459,7 +484,13 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
             }else if scrollDirection == .vertical{
                 var currentOffsetY = scrollView.contentOffset.y - (CGFloat(totalItemsCount) * scrollView.frame.size.height) / 2
                 if currentOffsetY < 0 {
-                    currentOffsetY = -currentOffsetY
+                    if currentOffsetY >= -scrollView.frame.size.height{
+                        currentOffsetY = CGFloat(indexOnPageControl) * scrollView.frame.size.height
+                    }else if currentOffsetY <= -maxSwipeSize{
+                        collectionView.scrollToItem(at: IndexPath.init(item: Int(totalItemsCount/2), section: 0), at: position, animated: false)
+                    }else{
+                        currentOffsetY = maxSwipeSize + currentOffsetY
+                    }
                 }
                 if currentOffsetY >= CGFloat(self.imagePaths.count) * scrollView.frame.size.height && infiniteLoop!{
                     collectionView.scrollToItem(at: IndexPath.init(item: Int(totalItemsCount/2), section: 0), at: position, animated: false)
