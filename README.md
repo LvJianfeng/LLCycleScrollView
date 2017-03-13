@@ -40,21 +40,68 @@
 pod 'LLCycleScrollView' 
 ```
 <!--注意：在pod install的时候，比较慢(可能网速问题)，如果在pod update的时候就比较快了，此无解。-->
-## Future
 
-* 支持纯文本
-* 优化代码
+## Usage
+```swift
+let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo.ll_y + 205, width: w, height: 200))
+// 是否自动滚动
+bannerDemo.autoScroll = true
+
+// 是否无限循环，此属性修改了就不存在轮播的意义了 😄
+bannerDemo.infiniteLoop = true
+
+// 滚动间隔时间(默认为2秒)
+bannerDemo.autoScrollTimeInterval = 3.0
+
+// 等待数据状态显示的占位图
+bannerDemo.placeHolderImage = #UIImage
+
+// 如果没有数据的时候，使用的封面图
+bannerDemo.coverImage = #UIImage
+
+// 设置图片显示方式=UIImageView的ContentMode
+bannerDemo.imageViewContentMode = .scaleToFill
+
+// 设置滚动方向（ vertical || horizontal ）
+bannerDemo.scrollDirection = .vertical
+
+// 设置当前PageControl的样式 (.none, .system, .fill, .pill, .snake)
+bannerDemo.customPageControlStyle = .snake
+
+// 非.system的状态下，设置PageControl的tintColor
+bannerDemo.customPageControlInActiveTintColor = UIColor.red
+
+// 设置.system系统的UIPageControl当前显示的颜色
+bannerDemo.pageControlCurrentPageColor = UIColor.white
+
+// 非.system的状态下，设置PageControl的间距(默认为8.0)
+bannerDemo.customPageControlIndicatorPadding = 8.0
+
+// 设置PageControl的位置 (.left, .right 默认为.center)
+bannerDemo.pageControlPosition = .center
+
+// 背景色
+bannerDemo.collectionViewBackgroundColor
+
+// 添加到view
+self.addSubview(bannerDemo1)
+
+// 模拟网络图片获取
+DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+  bannerDemo.imagePaths = imagesURLStrings
+}
+```
+
 
 ## Example
 
 示例代码见ViewController.swift
 
+## Future
+
+* 支持纯文本
+* 优化代码
+
 ## Author
 
 LvJianfeng, coderjianfeng@foxmail.com
-
-
-
-
-
-
