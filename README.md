@@ -20,6 +20,7 @@
 * 支持没有数据，占位图占位(仅设置CoverImage(有默认图)即可)
 * 支持本地图片显示及与网络图的混合显示
 * 支持系统UIPageControl位置设置
+* 支持StoryBoard
 
 ## Update
 请使用最新版本 1.2.6
