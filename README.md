@@ -25,6 +25,7 @@
 
 版本信息 | 更新描述
 ----    |  ------
+1.2.6   | * 修改自定义PageControl反向滚动时候，pageControl的方向控制问题
 1.2.5   | * 修复自定义PageControl快速滚动问题，修复系统UIPageControl位置left&right对换设置问题
 1.2.4   | * 支持系统UIPageControl位置设置，其属性pageControlPosition<br>* 公开pageControl及customPageControl两个控件，方便控制及自定义
 1.2.3   | * 支持本地图片显示及与网络图的混合显示<br>* 增加图片contentMode的控制
