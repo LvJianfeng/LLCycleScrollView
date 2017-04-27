@@ -37,24 +37,39 @@ class ViewController: UIViewController {
         // 图片配文字
         let titles = ["感谢您的支持",
                       "如果代码在使用过程中出现问题",
-                      "您可以发邮件到coderjianfeng@foxmail.com您可以发邮件到coderjianfeng@foxmail.com",
+                      "您可以发邮件到coderjianfeng@foxmail.com您可以发邮件到coderjianfeng@foxmail.com"
                       ];
-        // Storyboard
+        
+        
+        // Storyboard Demo
         self.storyBoardBanner.imagePaths = imagesURLStrings
         self.storyBoardBanner.titles = titles
         // 新增图片显示控制
         self.storyBoardBanner.imageViewContentMode = .scaleToFill
         self.storyBoardBanner.pageControlPosition = .right
-
+        
+        
+        
+        // 纯文本demo
+        let titleDemo = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height: 70), titles: titles) { (index) in
+            print("当前点击文本的位置为:\(index)")
+        }
+        titleDemo.customPageControlStyle = .none
+        titleDemo.scrollDirection = .vertical
+        scrollView.addSubview(titleDemo)
+    
         
         
         // Demo--点击回调
-        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in
+        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: titleDemo.ll_y + 80, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in
             print("当前点击图片的位置为:\(index)")
         })
         bannerDemo.customPageControlStyle = .pill
         bannerDemo.customPageControlInActiveTintColor = UIColor.red
         scrollView.addSubview(bannerDemo)
+
+        
+        
         
         // Demo--延时加载数据之滚动方向控制
         let bannerDemo1 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo.ll_y + 205, width: w, height: 200))
@@ -66,6 +81,8 @@ class ViewController: UIViewController {
             bannerDemo1.imagePaths = imagesURLStrings
         }
         
+        
+
         // Demo--其他属性
         bannerDemo2 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo1.ll_y + 205, width: w, height: 200))
         // 滚动间隔时间
