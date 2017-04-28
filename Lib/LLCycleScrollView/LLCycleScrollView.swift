@@ -187,6 +187,19 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         }
     }
     
+    // MARK: 文本相关属性
+    // 文本颜色
+    open var textColor: UIColor = UIColor.white
+    
+    // 文本行数
+    open var numberOfLines: NSInteger = 2
+    
+    // 文本字体
+    open var font: UIFont = UIFont.systemFont(ofSize: 15)
+    
+    // 文本区域背景颜色
+    open var titleBackgroundColor: UIColor = UIColor.black.withAlphaComponent(0.3)
+    
     // MARK: 标题数据源
     // 标题
     open var titles: Array<String> = []
@@ -451,6 +464,11 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: LLCycleScrollViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! LLCycleScrollViewCell
+        // Setting
+        cell.titleFont = font
+        cell.titleLabelTextColor = textColor
+        cell.titleBackViewBackgroundColor = titleBackgroundColor
+        cell.titleLines = numberOfLines
         
         // Only Title
         if isOnlyTitle && titles.count > 0{

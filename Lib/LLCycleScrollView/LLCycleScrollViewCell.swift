@@ -32,11 +32,25 @@ class LLCycleScrollViewCell: UICollectionViewCell {
         }
     }
     
+    // 标题字体
+    var titleFont: UIFont = UIFont.systemFont(ofSize: 15) {
+        didSet {
+            titleLabel.font = titleFont
+        }
+    }
+    
+    // 文本行数
+    var titleLines: NSInteger = 2 {
+        didSet {
+            titleLabel.numberOfLines = titleLines
+        }
+    }
+    
     
     // 标题背景色
     var titleBackViewBackgroundColor: UIColor = UIColor.black.withAlphaComponent(0.3) {
         didSet {
-            titleLabel.backgroundColor = titleBackViewBackgroundColor
+            titleBackView.backgroundColor = titleBackViewBackgroundColor
         }
     }
     
@@ -81,8 +95,8 @@ class LLCycleScrollViewCell: UICollectionViewCell {
         titleLabel = UILabel.init()
         titleLabel.isHidden = true
         titleLabel.textColor = titleLabelTextColor
-        titleLabel.numberOfLines = 2
-        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        titleLabel.numberOfLines = titleLines
+        titleLabel.font = titleFont
         titleLabel.backgroundColor = UIColor.clear
         titleBackView.addSubview(titleLabel)
     }

@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "LLCycleScrollView"
-  s.version      = "1.2.7"
+  s.version      = "1.2.8"
   s.summary      = "几行代码实现轮播图Swift3"
   s.homepage     = "https://github.com/LvJianfeng/LLCycleScrollView"
   s.license      = "MIT"

@@ -56,6 +56,10 @@ class ViewController: UIViewController {
         }
         titleDemo.customPageControlStyle = .none
         titleDemo.scrollDirection = .vertical
+        titleDemo.font = UIFont.systemFont(ofSize: 13)
+        titleDemo.textColor = UIColor.red
+        titleDemo.titleBackgroundColor = UIColor.green.withAlphaComponent(0.3)
+        titleDemo.numberOfLines = 2
         scrollView.addSubview(titleDemo)
     
         
