@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         self.storyBoardBanner.titles = titles
         // 新增图片显示控制
         self.storyBoardBanner.imageViewContentMode = .scaleToFill
-        self.storyBoardBanner.pageControlPosition = .right
+        self.storyBoardBanner.pageControlPosition = .left
         
         
         
@@ -60,6 +60,8 @@ class ViewController: UIViewController {
         titleDemo.textColor = UIColor.red
         titleDemo.titleBackgroundColor = UIColor.green.withAlphaComponent(0.3)
         titleDemo.numberOfLines = 2
+        // 文本　Leading约束
+        titleDemo.titleLeading = 30
         scrollView.addSubview(titleDemo)
     
         
@@ -70,6 +72,8 @@ class ViewController: UIViewController {
         })
         bannerDemo.customPageControlStyle = .pill
         bannerDemo.customPageControlInActiveTintColor = UIColor.red
+        // 下边约束
+        bannerDemo.pageControlBottom = 20
         scrollView.addSubview(bannerDemo)
 
         

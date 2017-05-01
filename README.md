@@ -24,10 +24,11 @@
 * 支持纯文本
 
 ## Update
-请使用最新版本 1.2.8
+请使用最新版本 1.2.9
 
 版本信息 | 更新描述
 ----    |  ------
+1.2.9   | * 增加支持文本Leading约束属性titleLeading<br>* PageControl的Bottom约束属性pageControlBottom
 1.2.8   | * 支持纯文本部分属性修改，没有开放Label
 1.2.7   | * 支持纯文本
 1.2.6   | * 修改自定义PageControl反向滚动时候，pageControl的方向控制问题

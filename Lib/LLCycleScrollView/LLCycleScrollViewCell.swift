@@ -46,6 +46,13 @@ class LLCycleScrollViewCell: UICollectionViewCell {
         }
     }
     
+    // 标题文本x轴间距
+    var titleLabelLeading: CGFloat = 15 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
     
     // 标题背景色
     var titleBackViewBackgroundColor: UIColor = UIColor.black.withAlphaComponent(0.3) {
@@ -107,6 +114,6 @@ class LLCycleScrollViewCell: UICollectionViewCell {
         
         imageView.frame = self.bounds
         titleBackView.frame = CGRect.init(x: 0, y: self.ll_h - titleLabelHeight, width: self.ll_w, height: titleLabelHeight)
-        titleLabel.frame = CGRect.init(x: 15, y: 0, width: self.ll_w - 20, height: titleLabelHeight)
+        titleLabel.frame = CGRect.init(x: titleLabelLeading, y: 0, width: self.ll_w - titleLabelLeading - 5, height: titleLabelHeight)
     }
 }

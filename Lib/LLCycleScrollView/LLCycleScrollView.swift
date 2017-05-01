@@ -120,7 +120,7 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
             setupPageControl()
         }
     }
-    // 间距
+    // Indicator间距
     open var customPageControlIndicatorPadding: CGFloat = 8 {
         didSet {
             setupPageControl()
@@ -134,11 +134,22 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         }
     }
     
+    // PageControl x轴间距
     open var pageControlLeadingOrTrialingContact: CGFloat = 28 {
         didSet {
-            setupPageControl()
+            setNeedsDisplay()
         }
     }
+    
+    // PageControl bottom间距
+    open var pageControlBottom: CGFloat = 11 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    // PageControl x轴文本间距
+    open var titleLeading: CGFloat = 15
     
     // PageControl
     open var pageControl: UIPageControl?
@@ -186,6 +197,9 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
             collectionView.reloadData()
         }
     }
+    
+    // MARK: 间距属性
+    
     
     // MARK: 文本相关属性
     // 文本颜色
@@ -394,17 +408,17 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         // Page Frame
         if customPageControlStyle == .none || customPageControlStyle == .system {
             if pageControlPosition == .center {
-                pageControl?.frame = CGRect.init(x: 0, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
+                pageControl?.frame = CGRect.init(x: 0, y: self.ll_h-pageControlBottom, width: UIScreen.main.bounds.width, height: 10)
             }else{
                 let pointSize = pageControl?.size(forNumberOfPages: self.imagePaths.count)
                 if pageControlPosition == .left {
-                    pageControl?.frame = CGRect.init(x: -(UIScreen.main.bounds.width - (pointSize?.width)! - pageControlLeadingOrTrialingContact) * 0.5, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
+                    pageControl?.frame = CGRect.init(x: -(UIScreen.main.bounds.width - (pointSize?.width)! - pageControlLeadingOrTrialingContact) * 0.5, y: self.ll_h-pageControlBottom, width: UIScreen.main.bounds.width, height: 10)
                 }else{
-                    pageControl?.frame = CGRect.init(x: (UIScreen.main.bounds.width - (pointSize?.width)! - pageControlLeadingOrTrialingContact) * 0.5, y: self.ll_h-11, width: UIScreen.main.bounds.width, height: 10)
+                    pageControl?.frame = CGRect.init(x: (UIScreen.main.bounds.width - (pointSize?.width)! - pageControlLeadingOrTrialingContact) * 0.5, y: self.ll_h-pageControlBottom, width: UIScreen.main.bounds.width, height: 10)
                 }
             }
         }else{
-            var y = self.ll_h-10-1
+            var y = self.ll_h-pageControlBottom
             // pill
             if customPageControlStyle == .pill {
                 y+=5
@@ -469,6 +483,9 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
         cell.titleLabelTextColor = textColor
         cell.titleBackViewBackgroundColor = titleBackgroundColor
         cell.titleLines = numberOfLines
+        
+        // Leading
+        cell.titleLabelLeading = titleLeading
         
         // Only Title
         if isOnlyTitle && titles.count > 0{
