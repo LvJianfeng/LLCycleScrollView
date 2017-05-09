@@ -24,10 +24,11 @@
 * 支持纯文本
 
 ## Update
-请使用最新版本 1.2.9
+请使用最新版本 1.3.0
 
 版本信息 | 更新描述
 ----    |  ------
+1.3.0   | * 修复StoryBoard在部分设备显示问题
 1.2.9   | * 增加支持文本Leading约束属性titleLeading<br>* PageControl的Bottom约束属性pageControlBottom
 1.2.8   | * 支持纯文本部分属性修改，没有开放Label
 1.2.7   | * 支持纯文本

@@ -321,7 +321,7 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     
     // MARK: 添加UICollectionView
     private func setupMainView() {
-        collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: flowLayout!)
+        collectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: flowLayout!)
         collectionView.register(LLCycleScrollViewCell.self, forCellWithReuseIdentifier: identifier)
         collectionView.backgroundColor = collectionViewBackgroundColor
         collectionView.isPagingEnabled = true
@@ -403,6 +403,8 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     // MARK: layoutSubviews
     override open func layoutSubviews() {
         super.layoutSubviews()
+        // CollectionView
+        collectionView.frame = self.bounds
         // Cell Size
         flowLayout?.itemSize = self.frame.size
         // Page Frame
