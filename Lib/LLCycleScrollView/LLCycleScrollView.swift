@@ -24,10 +24,10 @@ public enum PageControlPosition {
 }
 
 public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
-@IBDesignable open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
+open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     // MARK: 控制参数
     // 是否自动滚动，默认true
-    @IBInspectable open var autoScroll: Bool? = true {
+    open var autoScroll: Bool? = true {
         didSet {
             invalidateTimer()
             if autoScroll! {
@@ -37,7 +37,7 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     }
     
     // 无限循环，默认true 此属性修改了就不存在轮播的意义了
-    @IBInspectable open var infiniteLoop: Bool? = true {
+    open var infiniteLoop: Bool? = true {
         didSet {
             if imagePaths.count > 0 {
                 let temp = imagePaths
@@ -59,14 +59,14 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     }
     
     // 滚动间隔时间,默认2s
-    @IBInspectable open var autoScrollTimeInterval: Double = 2.0 {
+    open var autoScrollTimeInterval: Double = 2.0 {
         didSet {
             autoScroll = true
         }
     }
     
     // 加载状态图 -- 这个是有数据，等待加载的占位图
-    @IBInspectable open var placeHolderImage: UIImage? = nil {
+    open var placeHolderImage: UIImage? = nil {
         didSet {
             if placeHolderImage != nil {
                 placeHolderViewImage = placeHolderImage
@@ -75,7 +75,7 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     }
     
     // 空数据页面显示占位图 -- 这个是没有数据，整个轮播器的占位图
-    @IBInspectable open var coverImage: UIImage? = nil {
+    open var coverImage: UIImage? = nil {
         didSet {
             if coverImage != nil {
                 coverViewImage = coverImage
@@ -84,7 +84,7 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     }
     
     // 背景色
-    @IBInspectable open var collectionViewBackgroundColor: UIColor! = UIColor.clear
+    open var collectionViewBackgroundColor: UIColor! = UIColor.clear
     
     // MARK: 图片属性
     // 图片显示Mode

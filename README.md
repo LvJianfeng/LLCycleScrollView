@@ -28,6 +28,7 @@
 
 版本信息 | 更新描述
 ----    |  ------
+1.3.2   | * 由于IBDesignable问题，临时取消，后续会检查更新
 1.3.1   | * 修复图placeHolder显示问题
 1.3.0   | * 修复StoryBoard在部分设备显示问题
 1.2.9   | * 增加支持文本Leading约束属性titleLeading<br>* PageControl的Bottom约束属性pageControlBottom
