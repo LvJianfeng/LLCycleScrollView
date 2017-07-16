@@ -7,6 +7,8 @@
 
 ## Issues
 如果使用过程中，有什么问题欢迎issues。
+版本1.3.1之前 包含IBDesignable，部分可能存在IBDesignable问题。
+版本1.3.2 取消了IBDesignable，建议使用此版本。
 
 ## Support
 
