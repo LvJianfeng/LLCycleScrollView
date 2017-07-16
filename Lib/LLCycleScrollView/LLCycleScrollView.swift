@@ -42,7 +42,7 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
             if imagePaths.count > 0 {
                 let temp = imagePaths
                 imagePaths = temp
-            }
+            }   
         }
     }
     
@@ -265,10 +265,10 @@ public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
     fileprivate var timer: Timer?
     
     // 加载状态图
-    fileprivate var placeHolderViewImage: UIImage! = UIImage.init(named: "LLCycleScrollView.bundle/llplaceholder.png")
+    fileprivate var placeHolderViewImage: UIImage! = UIImage(named: "LLCycleScrollView.bundle/llplaceholder.png", in: Bundle(for: LLCycleScrollView.self), compatibleWith: nil)
     
     // 空数据页面显示占位图
-    fileprivate var coverViewImage: UIImage! = UIImage.init(named: "LLCycleScrollView.bundle/llplaceholder.png")
+    fileprivate var coverViewImage: UIImage! = UIImage(named: "LLCycleScrollView.bundle/llplaceholder.png", in: Bundle(for: LLCycleScrollView.self), compatibleWith: nil)
     
     // MARK: Init
     override public init(frame: CGRect) {
