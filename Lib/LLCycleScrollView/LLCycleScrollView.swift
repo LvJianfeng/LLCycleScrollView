@@ -216,7 +216,15 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     
     // MARK: 标题数据源
     // 标题
-    open var titles: Array<String> = []
+    open var titles: Array<String> = [] {
+        didSet {
+            if titles.count > 0 {
+                if imagePaths.count == 0 {
+                    imagePaths = titles
+                }
+            }
+        }
+    }
     
     // MARK: 闭包
     // 回调
@@ -294,18 +302,25 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     }
     
     // MARK: 纯文本
-    open class func llCycleScrollViewWithTitles(frame: CGRect, titles: Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
+    open class func llCycleScrollViewWithTitles(frame: CGRect, backImage: UIImage? = nil, titles: Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
         let llcycleScrollView: LLCycleScrollView = LLCycleScrollView.init(frame: frame)
+        
+        if let backImage = backImage {
+            // 异步加载数据时候，第一个页面会出现placeholder image，可以用backImage来设置纯色图片等其他方式
+            llcycleScrollView.coverImage = backImage
+        }
+        
         // Set isOnlyTitle
         llcycleScrollView.isOnlyTitle = true
-
+        
         // Cell Height
         llcycleScrollView.cellHeight = frame.size.height
         
+        // Titles Data
         if (titles?.count)! > 0 {
-            llcycleScrollView.imagePaths = titles!
             llcycleScrollView.titles = titles!
         }
+
         if didSelectItemAtIndex != nil {
             llcycleScrollView.lldidSelectItemAtIndex = didSelectItemAtIndex
         }

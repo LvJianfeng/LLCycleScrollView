@@ -64,7 +64,11 @@ class LLCycleScrollViewCell: UICollectionViewCell {
     var titleBackView: UIView!
     
     // 标题Label高度
-    var titleLabelHeight: CGFloat! = 56
+    var titleLabelHeight: CGFloat! = 56 {
+        didSet {
+            layoutSubviews()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -44,6 +44,7 @@ class ViewController: UIViewController {
         // Storyboard Demo
         self.storyBoardBanner.imagePaths = imagesURLStrings
         self.storyBoardBanner.titles = titles
+        
         // 新增图片显示控制
         self.storyBoardBanner.imageViewContentMode = .scaleToFill
         self.storyBoardBanner.pageControlPosition = .left
@@ -51,20 +52,22 @@ class ViewController: UIViewController {
         
         
         // 纯文本demo
-        let titleDemo = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height: 70), titles: titles) { (index) in
+        let titleDemo = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height:70)) { (index) in
             print("当前点击文本的位置为:\(index)")
         }
+        
         titleDemo.customPageControlStyle = .none
         titleDemo.scrollDirection = .vertical
         titleDemo.font = UIFont.systemFont(ofSize: 13)
-        titleDemo.textColor = UIColor.red
-        titleDemo.titleBackgroundColor = UIColor.green.withAlphaComponent(0.3)
+        titleDemo.textColor = UIColor.white
+        titleDemo.titleBackgroundColor = UIColor.red
         titleDemo.numberOfLines = 2
         // 文本　Leading约束
         titleDemo.titleLeading = 30
         scrollView.addSubview(titleDemo)
-    
-        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+            titleDemo.titles = titles
+        }
         
         // Demo--点击回调
         let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: titleDemo.ll_y + 80, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in
@@ -103,6 +106,7 @@ class ViewController: UIViewController {
         scrollView.addSubview(bannerDemo2)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             self.bannerDemo2.imagePaths = imagesURLStrings
+            self.bannerDemo2.titles = titles
         }
         scrollView.contentSize = CGSize.init(width: 0, height: bannerDemo2.ll_y+220)
     }
