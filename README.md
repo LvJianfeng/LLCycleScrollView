@@ -26,12 +26,14 @@
 * 支持系统UIPageControl位置设置
 * 支持StoryBoard
 * 支持纯文本
+* 支持CustomPageControl位置设置
 
 ## Update
-请使用最新版本 1.3.3
+请使用最新版本 1.3.4
 
 版本信息 | 更新描述
 ----    |  ------
+1.3.4   | * 增加自定义PageControl的位置控制pageControlPosition
 1.3.3   | * 修复titles数据异步加载问题
 1.3.2   | * 由于IBDesignable问题，临时取消，后续会检查更新
 1.3.1   | * 修复图placeHolder显示问题

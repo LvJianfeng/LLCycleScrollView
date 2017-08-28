@@ -70,13 +70,20 @@ class ViewController: UIViewController {
         }
         
         // Demo--点击回调
-        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: titleDemo.ll_y + 80, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in
+        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y:titleDemo.ll_y + 80, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in
             print("当前点击图片的位置为:\(index)")
         })
-        bannerDemo.customPageControlStyle = .pill
+        
+        bannerDemo.lldidSelectItemAtIndex = { index in
+            
+        }
+        bannerDemo.customPageControlStyle = .fill
         bannerDemo.customPageControlInActiveTintColor = UIColor.red
+        bannerDemo.pageControlPosition = .left
+        bannerDemo.pageControlLeadingOrTrialingContact = 28
+        
         // 下边约束
-        bannerDemo.pageControlBottom = 20
+        bannerDemo.pageControlBottom = 15
         scrollView.addSubview(bannerDemo)
 
         

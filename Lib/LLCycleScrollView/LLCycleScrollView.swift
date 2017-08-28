@@ -127,7 +127,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
         }
     }
     
-    // PageControl 位置 （此属性目前仅支持系统默认控制器，未来会支持其他自定义PageControl）
+    // PageControl 位置
     open var pageControlPosition: PageControlPosition = .center {
         didSet {
             setupPageControl()
@@ -436,12 +436,21 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
             }
         }else{
             var y = self.ll_h-pageControlBottom
+            
             // pill
             if customPageControlStyle == .pill {
                 y+=5
             }
+            
             let oldFrame = customPageControl?.frame
-            customPageControl?.frame = CGRect.init(x: (oldFrame?.origin.x)!, y: y, width: (oldFrame?.size.width)!, height: 10)
+            switch pageControlPosition {
+            case .left:
+                customPageControl?.frame = CGRect.init(x: pageControlLeadingOrTrialingContact * 0.5, y: y, width: (oldFrame?.size.width)!, height: 10)
+            case.right:
+                customPageControl?.frame = CGRect.init(x: UIScreen.main.bounds.width - (oldFrame?.size.width)! - pageControlLeadingOrTrialingContact * 0.5, y: y, width: (oldFrame?.size.width)!, height: 10)
+            default:
+                customPageControl?.frame = CGRect.init(x: (oldFrame?.origin.x)!, y: y, width: (oldFrame?.size.width)!, height: 10)
+            }
         }
         
         if collectionView.contentOffset.x == 0 && totalItemsCount > 0 {
