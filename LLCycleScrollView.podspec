@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
   s.resource  = "Lib/LLCycleScrollView.bundle"
   s.dependency 'Kingfisher', '~> 4.0'
   s.requires_arc = true
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
 end
