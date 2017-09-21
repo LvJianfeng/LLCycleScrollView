@@ -12,6 +12,9 @@
 
 版本1.3.2 取消了IBDesignable，建议使用此版本。
 
+## Swift4
+支持Swift4请使用1.3.5版本，引用的三方库已经指定到Swift4。
+
 ## Support
 
 * 支持纯图片
