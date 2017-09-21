@@ -1,8 +1,8 @@
 
 Pod::Spec.new do |s|
   s.name         = "LLCycleScrollView"
-  s.version      = "1.3.4"
-  s.summary      = "几行代码实现轮播图Swift3"
+  s.version      = "1.3.5"
+  s.summary      = "几行代码实现轮播图Swift"
   s.homepage     = "https://github.com/LvJianfeng/LLCycleScrollView"
   s.license      = "MIT"
   s.author             = { "LvJianfeng" => "coderjianfeng@foxmail.com" }
@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/LvJianfeng/LLCycleScrollView.git", :tag => "#{s.version}" }
   s.source_files  = "Lib/LLCycleScrollView/**/*.{swift}"
   s.resource  = "Lib/LLCycleScrollView.bundle"
-  s.dependency 'Kingfisher'
+  s.dependency 'Kingfisher', '~> 4.0'
   s.requires_arc = true
 end

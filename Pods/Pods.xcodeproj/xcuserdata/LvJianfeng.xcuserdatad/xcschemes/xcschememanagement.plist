@@ -2,18 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SuppressBuildableAutocreation</key>
+	<key>SchemeUserState</key>
 	<dict>
-		<key>09BD0A13C692C96EB5C8D74B7A42A5B8</key>
+		<key>Kingfisher.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
 		</dict>
-		<key>C4944FEC314D1A66588651D006273ADE</key>
+		<key>Pods-LLCycleScrollView.xcscheme</key>
 		<dict>
-			<key>primary</key>
-			<true/>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict/>
 </dict>
 </plist>

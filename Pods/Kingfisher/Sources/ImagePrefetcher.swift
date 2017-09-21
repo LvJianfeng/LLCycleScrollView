@@ -4,7 +4,7 @@
 //
 //  Created by Claire Knight <claire.knight@moggytech.co.uk> on 24/02/2016
 //
-//  Copyright (c) 2016 Wei Wang <onevcat@gmail.com>
+//  Copyright (c) 2017 Wei Wang <onevcat@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -181,13 +181,9 @@ public class ImagePrefetcher {
      */
     public func stop() {
         DispatchQueue.main.safeAsync {
-            
             if self.finished { return }
-            
             self.stopped = true
-            self.tasks.forEach { (_, task) -> () in
-                task.cancel()
-            }
+            self.tasks.values.forEach { $0.cancel() }
         }
     }
     
@@ -237,7 +233,8 @@ public class ImagePrefetcher {
         if optionsInfo.forceRefresh {
             downloadAndCache(resource)
         } else {
-            let alreadyInCache = manager.cache.isImageCached(forKey: resource.cacheKey).cached
+            let alreadyInCache = manager.cache.imageCachedType(forKey: resource.cacheKey,
+                                                             processorIdentifier: optionsInfo.processor.identifier).cached
             if alreadyInCache {
                 append(cached: resource)
             } else {

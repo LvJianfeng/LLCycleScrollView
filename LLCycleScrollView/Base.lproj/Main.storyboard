@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ipC-Sg-XVA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ipC-Sg-XVA">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,6 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ipC-Sg-XVA" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tmY-mh-bEx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -38,19 +37,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LLCycleScrollView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLE-Xe-hMf">
-                                <rect key="frame" x="96" y="28" width="223" height="34"/>
+                                <rect key="frame" x="103.66666666666669" y="28.000000000000004" width="208" height="31.333333333333339"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swift 3 轮播图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noy-bd-lmV">
-                                <rect key="frame" x="149" y="72" width="116" height="21"/>
+                                <rect key="frame" x="149" y="69.333333333333329" width="116" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jIB-c4-QxE">
-                                <rect key="frame" x="0.0" y="114" width="414" height="622"/>
+                                <rect key="frame" x="0.0" y="111.33333333333331" width="414" height="624.66666666666674"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQY-9G-4I4" customClass="LLCycleScrollView" customModule="LLCycleScrollView" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="414" height="180"/>
@@ -58,16 +57,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="180" id="dgz-n4-DoR"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="autoScrollTimeInterval">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="collectionViewBackgroundColor">
-                                                <color key="value" red="1" green="1" blue="0.47938368059999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="placeHolderImage" value="s1"/>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="coverImage" value="s2"/>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -102,8 +91,4 @@
             <point key="canvasLocation" x="454" y="102"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="s1" width="900" height="314"/>
-        <image name="s2" width="1024" height="356"/>
-    </resources>
 </document>

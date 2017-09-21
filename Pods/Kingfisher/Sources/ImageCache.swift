@@ -4,7 +4,7 @@
 //
 //  Created by Wei Wang on 15/4/6.
 //
-//  Copyright (c) 2016 Wei Wang <onevcat@gmail.com>
+//  Copyright (c) 2017 Wei Wang <onevcat@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -60,6 +60,13 @@ Cache type of a cached image.
 */
 public enum CacheType {
     case none, memory, disk
+    
+    public var cached: Bool {
+        switch self {
+        case .memory, .disk: return true
+        case .none: return false
+        }
+    }
 }
 
 /// `ImageCache` represents both the memory and disk cache system of Kingfisher. 
@@ -93,6 +100,7 @@ open class ImageCache {
     
     /// The longest time duration in second of the cache being stored in disk. 
     /// Default is 1 week (60 * 60 * 24 * 7 seconds).
+    /// Setting this to a negative value will make the disk cache never expiring.
     open var maxCachePeriodInSecond: TimeInterval = 60 * 60 * 24 * 7 //Cache exists for 1 week
     
     /// The largest disk size can be taken for the cache. It is the total 
@@ -294,7 +302,7 @@ open class ImageCache {
                 if let image = sSelf.retrieveImageInDiskCache(forKey: key, options: options) {
                     if options.backgroundDecode {
                         sSelf.processQueue.async {
-                            let result = image.kf.decoded(scale: options.scaleFactor)
+                            let result = image.kf.decoded
                             
                             sSelf.store(result,
                                         forKey: key,
@@ -302,7 +310,6 @@ open class ImageCache {
                                         cacheSerializer: options.cacheSerializer,
                                         toDisk: false,
                                         completionHandler: nil)
-                            
                             options.callbackDispatchQueue.safeAsync {
                                 completionHandler(result, .memory)
                                 sSelf = nil
@@ -475,47 +482,43 @@ open class ImageCache {
         
         let diskCacheURL = URL(fileURLWithPath: diskCachePath)
         let resourceKeys: Set<URLResourceKey> = [.isDirectoryKey, .contentAccessDateKey, .totalFileAllocatedSizeKey]
-        let expiredDate = Date(timeIntervalSinceNow: -maxCachePeriodInSecond)
+        let expiredDate: Date? = (maxCachePeriodInSecond < 0) ? nil : Date(timeIntervalSinceNow: -maxCachePeriodInSecond)
         
         var cachedFiles = [URL: URLResourceValues]()
         var urlsToDelete = [URL]()
         var diskCacheSize: UInt = 0
-        
-        if let fileEnumerator = self.fileManager.enumerator(at: diskCacheURL, includingPropertiesForKeys: Array(resourceKeys), options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles, errorHandler: nil),
-           let urls = fileEnumerator.allObjects as? [URL]
-        {
-            for fileUrl in urls {
-                
-                do {
-                    let resourceValues = try fileUrl.resourceValues(forKeys: resourceKeys)
-                    // If it is a Directory. Continue to next file URL.
-                    if resourceValues.isDirectory == true {
-                        continue
-                    }
-                    
-                    if !onlyForCacheSize {
-                        // If this file is expired, add it to URLsToDelete
-                        if let lastAccessData = resourceValues.contentAccessDate {
-                            if (lastAccessData as NSDate).laterDate(expiredDate) == expiredDate {
-                                urlsToDelete.append(fileUrl)
-                                continue
-                            }
-                        }
-                    }
 
-                    if let fileSize = resourceValues.totalFileAllocatedSize {
-                        diskCacheSize += UInt(fileSize)
-                        if !onlyForCacheSize {
-                            cachedFiles[fileUrl] = resourceValues
-                        }
+        for fileUrl in (try? fileManager.contentsOfDirectory(at: diskCacheURL, includingPropertiesForKeys: Array(resourceKeys), options: .skipsHiddenFiles)) ?? [] {
+
+            do {
+                let resourceValues = try fileUrl.resourceValues(forKeys: resourceKeys)
+                // If it is a Directory. Continue to next file URL.
+                if resourceValues.isDirectory == true {
+                    continue
+                }
+
+                // If this file is expired, add it to URLsToDelete
+                if !onlyForCacheSize,
+                    let expiredDate = expiredDate,
+                    let lastAccessData = resourceValues.contentAccessDate,
+                    (lastAccessData as NSDate).laterDate(expiredDate) == expiredDate
+                {
+                    urlsToDelete.append(fileUrl)
+                    continue
+                }
+
+                if let fileSize = resourceValues.totalFileAllocatedSize {
+                    diskCacheSize += UInt(fileSize)
+                    if !onlyForCacheSize {
+                        cachedFiles[fileUrl] = resourceValues
                     }
-                } catch _ { }
-            }
+                }
+            } catch _ { }
         }
-        
+
         return (urlsToDelete, diskCacheSize, cachedFiles)
     }
-    
+
 #if !os(macOS) && !os(watchOS)
     /**
     Clean expired disk cache when app in background. This is an async operation.
@@ -545,27 +548,17 @@ open class ImageCache {
 
     // MARK: - Check cache status
     
-    /**
-    *  Cache result for checking whether an image is cached for a key.
-    */
-    public struct CacheCheckResult {
-        public let cached: Bool
-        public let cacheType: CacheType?
-    }
-    
-    /**
-    Check whether an image is cached for a key.
-    
-    - parameter key: Key for the image.
-    
-    - returns: The check result.
-    */
-    open func isImageCached(forKey key: String, processorIdentifier identifier: String = "") -> CacheCheckResult {
-        
+    /// Cache type for checking whether an image is cached for a key in current cache.
+    ///
+    /// - Parameters:
+    ///   - key: Key for the image.
+    ///   - identifier: Processor identifier which used for this image. Default is empty string.
+    /// - Returns: A `CacheType` instance which indicates the cache status. `.none` means the image is not in cache yet.
+    open func imageCachedType(forKey key: String, processorIdentifier identifier: String = "") -> CacheType {
         let computedKey = key.computedKey(with: identifier)
         
         if memoryCache.object(forKey: computedKey as NSString) != nil {
-            return CacheCheckResult(cached: true, cacheType: .memory)
+            return .memory
         }
         
         let filePath = cachePath(forComputedKey: computedKey)
@@ -574,12 +567,12 @@ open class ImageCache {
         ioQueue.sync {
             diskCached = fileManager.fileExists(atPath: filePath)
         }
-
+        
         if diskCached {
-            return CacheCheckResult(cached: true, cacheType: .disk)
+            return .disk
         }
         
-        return CacheCheckResult(cached: false, cacheType: nil)
+        return .none
     }
     
     /**
@@ -652,6 +645,39 @@ extension ImageCache {
           return (key.kf.md5 as NSString).appendingPathExtension(ext)!
         }
         return key.kf.md5
+    }
+}
+
+// MARK: - Deprecated
+extension ImageCache {
+    /**
+     *  Cache result for checking whether an image is cached for a key.
+     */
+    @available(*, deprecated,
+    message: "CacheCheckResult is deprecated. Use imageCachedType(forKey:processorIdentifier:) API instead.")
+    public struct CacheCheckResult {
+        public let cached: Bool
+        public let cacheType: CacheType?
+    }
+    
+    /**
+     Check whether an image is cached for a key.
+     
+     - parameter key: Key for the image.
+     
+     - returns: The check result.
+     */
+    @available(*, deprecated,
+    message: "Use imageCachedType(forKey:processorIdentifier:) instead. CacheCheckResult.none indicates not being cached.",
+    renamed: "imageCachedType(forKey:processorIdentifier:)")
+    open func isImageCached(forKey key: String, processorIdentifier identifier: String = "") -> CacheCheckResult {
+        let result = imageCachedType(forKey: key, processorIdentifier: identifier)
+        switch result {
+        case .memory, .disk:
+            return CacheCheckResult(cached: true, cacheType: result)
+        case .none:
+            return CacheCheckResult(cached: false, cacheType: nil)
+        }
     }
 }
 
