@@ -8,12 +8,10 @@
 ## Issues
 如果使用过程中，有什么问题欢迎issues。
 
-版本1.3.1之前 包含IBDesignable，部分可能存在IBDesignable问题。
-
-版本1.3.2 取消了IBDesignable，建议使用此版本。
 
 ## Swift4
-支持Swift4请使用1.3.5版本，引用的三方库已经指定到Swift4。
+Swift3 请使用1.3.x版本
+Swift4 请使用1.4.x版本
 
 ## Support
 
@@ -36,6 +34,8 @@
 
 版本信息 | 更新描述
 ----    |  ------
+1.4.0   | * Swift4
+1.3.6   | * 区分使用
 1.3.5   | * 指定支持Swift4的依赖库版本
 1.3.4   | * 增加自定义PageControl的位置控制pageControlPosition
 1.3.3   | * 修复titles数据异步加载问题
