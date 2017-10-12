@@ -11,6 +11,7 @@
 
 ## Swift4
 Swift3 请使用1.3.x版本
+
 Swift4 请使用1.4.x版本
 
 ## Support
@@ -30,7 +31,6 @@ Swift4 请使用1.4.x版本
 * 支持CustomPageControl位置设置
 
 ## Update
-请使用最新版本 1.3.5
 
 版本信息 | 更新描述
 ----    |  ------
