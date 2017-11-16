@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         }
         
         // Demo--点击回调
-        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y:titleDemo.ll_y + 80, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:titles, didSelectItemAtIndex: { index in
+        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y:titleDemo.ll_y + 80, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:nil, didSelectItemAtIndex: { index in
             print("当前点击图片的位置为:\(index)")
         })
         

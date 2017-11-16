@@ -163,7 +163,7 @@
 				TargetAttributes = {
 					3F56C0E51DE4404600904CF8 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = MUV9FJ5TL8;
+						DevelopmentTeam = M8AR6SG5CG;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -389,11 +389,11 @@
 			baseConfigurationReference = ABACABAC0CB22999D0823E66 /* Pods-LLCycleScrollView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MUV9FJ5TL8;
+				DEVELOPMENT_TEAM = M8AR6SG5CG;
 				INFOPLIST_FILE = LLCycleScrollView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LvJianfeng.LLCycleScrollView01;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LvJianfeng.LLCycleScrollView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -405,11 +405,11 @@
 			baseConfigurationReference = 085005A18ED5CF81F14F7B79 /* Pods-LLCycleScrollView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MUV9FJ5TL8;
+				DEVELOPMENT_TEAM = M8AR6SG5CG;
 				INFOPLIST_FILE = LLCycleScrollView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.LvJianfeng.LLCycleScrollView01;
+				PRODUCT_BUNDLE_IDENTIFIER = com.LvJianfeng.LLCycleScrollView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;

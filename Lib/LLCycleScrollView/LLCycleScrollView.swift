@@ -289,12 +289,14 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     open class func llCycleScrollViewWithFrame(_ frame: CGRect, imageURLPaths: Array<String>? = [], titles:Array<String>? = [],didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
         let llcycleScrollView: LLCycleScrollView = LLCycleScrollView.init(frame: frame)
         
-        if (imageURLPaths?.count)! > 0 {
-            llcycleScrollView.imagePaths = imageURLPaths!
+        if let imageURLPathList = imageURLPaths, imageURLPathList.count > 0 {
+            llcycleScrollView.imagePaths = imageURLPathList
         }
-        if (titles?.count)! > 0 {
-            llcycleScrollView.titles = titles!
+        
+        if let titleList = titles, titleList.count > 0 {
+            llcycleScrollView.titles = titleList
         }
+        
         if didSelectItemAtIndex != nil {
             llcycleScrollView.lldidSelectItemAtIndex = didSelectItemAtIndex
         }
@@ -317,8 +319,8 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
         llcycleScrollView.cellHeight = frame.size.height
         
         // Titles Data
-        if (titles?.count)! > 0 {
-            llcycleScrollView.titles = titles!
+        if let titleList = titles, titleList.count > 0 {
+            llcycleScrollView.titles = titleList
         }
 
         if didSelectItemAtIndex != nil {
