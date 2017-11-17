@@ -15,7 +15,7 @@ class LLCycleScrollViewCell: UICollectionViewCell {
         didSet {
             titleLabel.text = "\(title)"
             
-            if title.characters.count > 0 {
+            if title.count > 0 {
                 titleBackView.isHidden = false
                 titleLabel.isHidden = false
             }else{
@@ -98,6 +98,7 @@ class LLCycleScrollViewCell: UICollectionViewCell {
     fileprivate func setupLabelBackView() {
         titleBackView = UIView.init()
         titleBackView.backgroundColor = titleBackViewBackgroundColor
+        titleBackView.isHidden = true
         self.contentView.addSubview(titleBackView)
     }
     

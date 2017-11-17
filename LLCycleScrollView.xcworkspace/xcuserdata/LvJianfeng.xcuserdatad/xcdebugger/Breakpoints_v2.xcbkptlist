@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollViewCell.swift"
-            timestampString = "527674982.326731"
+            timestampString = "532595854.051432"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollViewCell.swift"
-            timestampString = "527674982.326836"
+            timestampString = "532595854.051495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793394"
+            timestampString = "532595854.051546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "184"
@@ -58,13 +58,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793459"
+            timestampString = "532595854.051599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
             endingLineNumber = "169"
             landmarkName = "LLCycleScrollView"
             landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LLCycleScrollView.LLCycleScrollView.init(frame: __C.CGRect) -&gt; LLCycleScrollView.LLCycleScrollView"
+                  moduleName = "LLCycleScrollView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/awakennull/Documents/Other%20Projects/LLCycleScrollView/Lib/LLCycleScrollView/LLCycleScrollView.swift"
+                  timestampString = "532595318.391773"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "1812">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LLCycleScrollView.LLCycleScrollView.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;LLCycleScrollView.LLCycleScrollView&gt;"
+                  moduleName = "LLCycleScrollView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/awakennull/Documents/Other%20Projects/LLCycleScrollView/Lib/LLCycleScrollView/LLCycleScrollView.swift"
+                  timestampString = "532595318.394348"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "1788">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,29 +106,123 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793504"
+            timestampString = "532595854.051648"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "161"
             endingLineNumber = "161"
             landmarkName = "LLCycleScrollView"
             landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LLCycleScrollView.LLCycleScrollView.init(frame: __C.CGRect) -&gt; LLCycleScrollView.LLCycleScrollView"
+                  moduleName = "LLCycleScrollView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/awakennull/Documents/Other%20Projects/LLCycleScrollView/Lib/LLCycleScrollView/LLCycleScrollView.swift"
+                  timestampString = "532595318.406143"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "162"
+                  endingLineNumber = "162"
+                  offsetFromSymbolStart = "1760">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LLCycleScrollView.LLCycleScrollView.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;LLCycleScrollView.LLCycleScrollView&gt;"
+                  moduleName = "LLCycleScrollView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/awakennull/Documents/Other%20Projects/LLCycleScrollView/Lib/LLCycleScrollView/LLCycleScrollView.swift"
+                  timestampString = "532595318.407594"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "162"
+                  endingLineNumber = "162"
+                  offsetFromSymbolStart = "1736">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793547"
+            timestampString = "532595854.051696"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
             endingLineNumber = "153"
             landmarkName = "LLCycleScrollView"
             landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LLCycleScrollView.LLCycleScrollView.pageControl.getter : Swift.Optional&lt;__ObjC.UIPageControl&gt;"
+                  moduleName = "LLCycleScrollView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/awakennull/Documents/Other%20Projects/LLCycleScrollView/Lib/LLCycleScrollView/LLCycleScrollView.swift"
+                  timestampString = "532594992.912735"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LLCycleScrollView.LLCycleScrollView.pageControl.setter : Swift.Optional&lt;__ObjC.UIPageControl&gt;"
+                  moduleName = "LLCycleScrollView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/awakennull/Documents/Other%20Projects/LLCycleScrollView/Lib/LLCycleScrollView/LLCycleScrollView.swift"
+                  timestampString = "532594992.914115"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LLCycleScrollView.LLCycleScrollView.init(frame: __C.CGRect) -&gt; LLCycleScrollView.LLCycleScrollView"
+                  moduleName = "LLCycleScrollView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/awakennull/Documents/Other%20Projects/LLCycleScrollView/Lib/LLCycleScrollView/LLCycleScrollView.swift"
+                  timestampString = "532594992.915469"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "1600">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LLCycleScrollView.LLCycleScrollView.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;LLCycleScrollView.LLCycleScrollView&gt;"
+                  moduleName = "LLCycleScrollView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/awakennull/Documents/Other%20Projects/LLCycleScrollView/Lib/LLCycleScrollView/LLCycleScrollView.swift"
+                  timestampString = "532594992.916812"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "1576">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,7 +232,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793589"
+            timestampString = "532595854.051743"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "139"
@@ -118,11 +244,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793629"
+            timestampString = "532595854.051788"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "133"
@@ -138,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.79367"
+            timestampString = "532595854.051835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "479"
-            endingLineNumber = "479"
+            startingLineNumber = "484"
+            endingLineNumber = "484"
             landmarkName = "scollToIndex(targetIndex:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,7 +280,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793708"
+            timestampString = "532595854.051881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
@@ -170,7 +296,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793748"
+            timestampString = "532595854.051926"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
@@ -182,11 +308,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793787"
+            timestampString = "532595854.05197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
@@ -202,7 +328,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793827"
+            timestampString = "532595854.052015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
@@ -218,7 +344,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
-            timestampString = "532515590.793866"
+            timestampString = "532595854.05206"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
@@ -234,12 +360,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lib/LLCycleScrollView/LLCycleScrollViewCell.swift"
-            timestampString = "527674982.361524"
+            timestampString = "532595854.052105"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "layoutSubviews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
+            timestampString = "532595854.052145"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "509"
+            endingLineNumber = "509"
+            landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
+            timestampString = "532595854.052186"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "525"
+            endingLineNumber = "525"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lib/LLCycleScrollView/LLCycleScrollView.swift"
+            timestampString = "532595854.052227"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "524"
+            endingLineNumber = "524"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

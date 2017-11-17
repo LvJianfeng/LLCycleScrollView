@@ -178,7 +178,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     open var imagePaths: Array<String> = [] {
         didSet {
             totalItemsCount = infiniteLoop! ? imagePaths.count * 100 : imagePaths.count
-            if imagePaths.count != 1 {
+            if imagePaths.count > 1 {
                 collectionView.isScrollEnabled = true
                 autoScroll = true
             }else{
@@ -286,8 +286,11 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     }
     
     // MARK: 初始化
-    open class func llCycleScrollViewWithFrame(_ frame: CGRect, imageURLPaths: Array<String>? = [], titles:Array<String>? = [],didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
+    open class func llCycleScrollViewWithFrame(_ frame: CGRect, imageURLPaths: Array<String>? = [], titles:Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
         let llcycleScrollView: LLCycleScrollView = LLCycleScrollView.init(frame: frame)
+        // Nil
+        llcycleScrollView.imagePaths = []
+        llcycleScrollView.titles = []
         
         if let imageURLPathList = imageURLPaths, imageURLPathList.count > 0 {
             llcycleScrollView.imagePaths = imageURLPathList
@@ -306,6 +309,8 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     // MARK: 纯文本
     open class func llCycleScrollViewWithTitles(frame: CGRect, backImage: UIImage? = nil, titles: Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
         let llcycleScrollView: LLCycleScrollView = LLCycleScrollView.init(frame: frame)
+        // Nil
+        llcycleScrollView.titles = []
         
         if let backImage = backImage {
             // 异步加载数据时候，第一个页面会出现placeholder image，可以用backImage来设置纯色图片等其他方式
@@ -501,7 +506,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     
     // MARK: UICollectionViewDataSource
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return totalItemsCount
+        return totalItemsCount == 0 ? 1:totalItemsCount
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
