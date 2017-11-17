@@ -15,6 +15,7 @@ public enum PageControlStyle {
     case fill
     case pill
     case snake
+    case image
 }
 
 public enum PageControlPosition {
@@ -172,6 +173,21 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
             setupPageControl()
         }
     }
+    
+    // 自定义pageControl图标
+    open var pageControlActiveImage: UIImage? = nil {
+        didSet {
+            setupPageControl()
+        }
+    }
+    
+    // 当前的pageControl图标
+    open var pageControlInActiveImage: UIImage? = nil {
+        didSet {
+            setupPageControl()
+        }
+    }
+    
     
     // MARK: 数据源
     // ImagePaths
@@ -420,6 +436,23 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
             (customPageControl as! LLSnakePageControl).pageCount = self.imagePaths.count
             self.addSubview(customPageControl!)
         }
+        
+        if customPageControlStyle == .image {
+            pageControl = LLImagePageControl()
+            pageControl?.pageIndicatorTintColor = UIColor.clear
+            pageControl?.currentPageIndicatorTintColor = UIColor.clear
+            
+            if let activeImage = pageControlActiveImage {
+                (pageControl as? LLImagePageControl)?.dotActiveImage = activeImage
+            }
+            if let inActiveImage = pageControlInActiveImage {
+                (pageControl as? LLImagePageControl)?.dotInActiveImage = inActiveImage
+            }
+            
+            pageControl?.numberOfPages = self.imagePaths.count
+            self.addSubview(pageControl!)
+            pageControl?.isHidden = false
+        }
     }
     
     // MARK: layoutSubviews
@@ -430,7 +463,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
         // Cell Size
         flowLayout?.itemSize = self.frame.size
         // Page Frame
-        if customPageControlStyle == .none || customPageControlStyle == .system {
+        if customPageControlStyle == .none || customPageControlStyle == .system || customPageControlStyle == .image {
             if pageControlPosition == .center {
                 pageControl?.frame = CGRect.init(x: 0, y: self.ll_h-pageControlBottom, width: UIScreen.main.bounds.width, height: 10)
             }else{
@@ -571,7 +604,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if imagePaths.count == 0 { return }
         let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
-        if customPageControlStyle == .none || customPageControlStyle == .system {
+        if customPageControlStyle == .none || customPageControlStyle == .system || customPageControlStyle == .image {
             pageControl?.currentPage = indexOnPageControl
         }else{
             var progress: CGFloat = 999

@@ -47,9 +47,10 @@ class ViewController: UIViewController {
         
         // 新增图片显示控制
         self.storyBoardBanner.imageViewContentMode = .scaleToFill
+        self.storyBoardBanner.customPageControlStyle = .image
         self.storyBoardBanner.pageControlPosition = .left
-        
-        
+        self.storyBoardBanner.pageControlActiveImage = #imageLiteral(resourceName: "dot")
+        self.storyBoardBanner.pageControlInActiveImage = #imageLiteral(resourceName: "dottest")
         
         // 纯文本demo
         let titleDemo = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height:70)) { (index) in
