@@ -560,16 +560,17 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
             let itemIndex = pageControlIndexWithCurrentCellIndex(index: indexPath.item)
             cell.title = titles[itemIndex]
         }else{
+            // Mode
+            if let imageViewContentMode = imageViewContentMode {
+                cell.imageView.contentMode = imageViewContentMode
+            }
+            
             // 0==count 占位图
             if imagePaths.count == 0 {
                 cell.imageView.image = coverViewImage
             }else{
                 let itemIndex = pageControlIndexWithCurrentCellIndex(index: indexPath.item)
                 let imagePath = imagePaths[itemIndex]
-                // Mode
-                if let imageViewContentMode = imageViewContentMode {
-                    cell.imageView.contentMode = imageViewContentMode
-                }
                 
                 // 根据imagePath，来判断是网络图片还是本地图
                 if imagePath.hasPrefix("http") {
