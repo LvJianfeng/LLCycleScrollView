@@ -31,7 +31,8 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     open var autoScroll: Bool? = true {
         didSet {
             invalidateTimer()
-            if autoScroll! {
+            // 如果关闭的无限循环，则不进行计时器的操作，否则每次滚动到最后一张就不在进行了。
+            if autoScroll! && infiniteLoop! {
                 setupTimer()
             }
         }
@@ -373,6 +374,9 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     
     // MARK: 添加Timer
     func setupTimer() {
+        // 仅一张图不进行滚动操纵
+        if self.imagePaths.count <= 1 { return }
+        
         timer = Timer.scheduledTimer(timeInterval: autoScrollTimeInterval as TimeInterval, target: self, selector: #selector(automaticScroll), userInfo: nil, repeats: true)
         RunLoop.main.add(timer!, forMode: .commonModes)
     }
@@ -391,6 +395,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
         if pageControl != nil {
             pageControl?.removeFromSuperview()
         }
+        
         if customPageControl != nil {
             customPageControl?.removeFromSuperview()
         }
