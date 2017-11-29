@@ -197,7 +197,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
             totalItemsCount = infiniteLoop! ? imagePaths.count * 100 : imagePaths.count
             if imagePaths.count > 1 {
                 collectionView.isScrollEnabled = true
-                autoScroll = true
+                autoScroll = self.autoScroll!
             }else{
                 collectionView.isScrollEnabled = false
             }
