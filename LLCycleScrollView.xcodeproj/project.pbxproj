@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F3551162042ADB200DDBAD5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3551152042ADB200DDBAD5 /* TableViewController.swift */; };
 		3F4F324F1DF00D8300BD01CA /* s3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F4F324E1DF00D8300BD01CA /* s3.jpg */; };
 		3F4F4C221FBECD3900675D92 /* LLImagePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F4C211FBECD3900675D92 /* LLImagePageControl.swift */; };
 		3F56C0EA1DE4404600904CF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56C0E91DE4404600904CF8 /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		085005A18ED5CF81F14F7B79 /* Pods-LLCycleScrollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LLCycleScrollView.release.xcconfig"; path = "Pods/Target Support Files/Pods-LLCycleScrollView/Pods-LLCycleScrollView.release.xcconfig"; sourceTree = "<group>"; };
+		3F3551152042ADB200DDBAD5 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		3F4F324E1DF00D8300BD01CA /* s3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = s3.jpg; sourceTree = "<group>"; };
 		3F4F4C211FBECD3900675D92 /* LLImagePageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLImagePageControl.swift; sourceTree = "<group>"; };
 		3F56C0E61DE4404600904CF8 /* LLCycleScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLCycleScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 			children = (
 				3F56C0E91DE4404600904CF8 /* AppDelegate.swift */,
 				3F56C0EB1DE4404600904CF8 /* ViewController.swift */,
+				3F3551152042ADB200DDBAD5 /* TableViewController.swift */,
 				3F56C0ED1DE4404600904CF8 /* Main.storyboard */,
 				3F56C0F01DE4404600904CF8 /* Assets.xcassets */,
 				3F56C0F21DE4404600904CF8 /* LaunchScreen.storyboard */,
@@ -266,6 +269,7 @@
 				3F8A784A1DEBD8890076B482 /* LLPillPageControl.swift in Sources */,
 				3F56C0EC1DE4404600904CF8 /* ViewController.swift in Sources */,
 				3F56C0EA1DE4404600904CF8 /* AppDelegate.swift in Sources */,
+				3F3551162042ADB200DDBAD5 /* TableViewController.swift in Sources */,
 				3F8A784B1DEBD8890076B482 /* LLSnakePageControl.swift in Sources */,
 				3F4F4C221FBECD3900675D92 /* LLImagePageControl.swift in Sources */,
 				3F8A78491DEBD8890076B482 /* LLFilledPageControl.swift in Sources */,

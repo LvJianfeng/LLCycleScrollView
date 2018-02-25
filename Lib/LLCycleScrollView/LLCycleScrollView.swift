@@ -24,6 +24,10 @@ public enum PageControlPosition {
     case right
 }
 
+@objc protocol LLCycleScrollViewDelegate: class {
+    @objc func cycleScrollView(_ cycleScrollView: LLCycleScrollView, didSelectItemIndex index: NSInteger)
+}
+
 public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
 open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     // MARK: 控制参数
@@ -150,6 +154,9 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
         }
     }
     
+    // 开启/关闭URL特殊字符处理
+    open var isAddingPercentEncodingForURLString: Bool = false
+    
     // PageControl x轴文本间距
     open var titleLeading: CGFloat = 15
     
@@ -247,6 +254,9 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     // 回调
     open var lldidSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil
     
+    // Delegate
+    weak var delegate: LLCycleScrollViewDelegate?
+    
     // MARK: Private
     // Identifier
     fileprivate let identifier = "LLCycleScrollViewCell"
@@ -274,6 +284,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     
     // 是否纯文本
     fileprivate var isOnlyTitle: Bool = false
+    
     
     // Cell Height
     fileprivate var cellHeight: CGFloat = 56
@@ -538,7 +549,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     }
     
     func pageControlIndexWithCurrentCellIndex(index: NSInteger) -> (Int) {
-        return Int(index % imagePaths.count)
+        return imagePaths.count == 0 ? 0 : Int(index % imagePaths.count)
     }
     
     
@@ -579,7 +590,8 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
                 
                 // 根据imagePath，来判断是网络图片还是本地图
                 if imagePath.hasPrefix("http") {
-                    cell.imageView.kf.setImage(with: URL(string: imagePath), placeholder: placeHolderImage)
+                    let escapedString = imagePath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    cell.imageView.kf.setImage(with: URL(string: isAddingPercentEncodingForURLString ? escapedString ?? imagePath : imagePath), placeholder: placeHolderImage)
                 }else{
                     if let image = UIImage.init(named: imagePath) {
                         cell.imageView.image = image;
@@ -603,6 +615,8 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let didSelectItemAtIndexPath = lldidSelectItemAtIndex {
             didSelectItemAtIndexPath(pageControlIndexWithCurrentCellIndex(index: indexPath.item))
+        }else if let delegate = delegate {
+            delegate.cycleScrollView(self, didSelectItemIndex: pageControlIndexWithCurrentCellIndex(index: indexPath.item))
         }
     }
     

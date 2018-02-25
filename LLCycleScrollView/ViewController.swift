@@ -52,6 +52,14 @@ class ViewController: UIViewController {
         self.storyBoardBanner.pageControlActiveImage = #imageLiteral(resourceName: "dot")
         self.storyBoardBanner.pageControlInActiveImage = #imageLiteral(resourceName: "dottest")
         
+        // 是否对url进行特殊字符处理
+        self.storyBoardBanner.isAddingPercentEncodingForURLString = true
+        
+        // 2018-02-25 新增协议
+        self.storyBoardBanner.delegate = self
+        
+        
+        
         // 纯文本demo
         let titleDemo = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height:70)) { (index) in
             print("当前点击文本的位置为:\(index)")
@@ -123,7 +131,12 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
 
+extension ViewController: LLCycleScrollViewDelegate {
+    func cycleScrollView(_ cycleScrollView: LLCycleScrollView, didSelectItemIndex index: NSInteger) {
+        print("协议：当前点击文本的位置为:\(index)")
+    }
 }
 
