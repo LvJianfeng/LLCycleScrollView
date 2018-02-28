@@ -21,7 +21,7 @@ class TableViewController: UITableViewController {
         
         // header
         // 纯文本demo
-        let titleHeaderDemo = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height:150)) { (index) in
+        let titleHeaderDemo = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height:20)) { (index) in
             print("当前点击文本的位置为:\(index)")
         }
         
