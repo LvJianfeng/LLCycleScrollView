@@ -209,13 +209,6 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
                 collectionView.isScrollEnabled = false
             }
             
-            // 计算最大扩展区大小
-            if scrollDirection == .horizontal {
-                maxSwipeSize = CGFloat(imagePaths.count) * collectionView.frame.width
-            }else{
-                maxSwipeSize = CGFloat(imagePaths.count) * collectionView.frame.height
-            }
-            
             setupPageControl()
             
             collectionView.reloadData()
@@ -306,8 +299,11 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     // 空数据页面显示占位图
     fileprivate var coverViewImage: UIImage! = UIImage(named: "LLCycleScrollView.bundle/llplaceholder.png", in: Bundle(for: LLCycleScrollView.self), compatibleWith: nil)
     
+    
+    
+    
     // MARK: Init
-    override public init(frame: CGRect) {
+    override internal init(frame: CGRect) {
         super.init(frame: frame)
         // setupMainView
         setupMainView()
@@ -347,10 +343,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
         
         // Set isOnlyTitle
         llcycleScrollView.isOnlyTitle = true
-        
-        // Cell Height
-        llcycleScrollView.cellHeight = frame.size.height
-        
+
         // Titles Data
         if let titleList = titles, titleList.count > 0 {
             llcycleScrollView.titles = titleList
@@ -476,6 +469,17 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
         super.layoutSubviews()
         // CollectionView
         collectionView.frame = self.bounds
+        
+        // Cell Height
+        cellHeight = collectionView.frame.height
+        
+        // 计算最大扩展区大小
+        if scrollDirection == .horizontal {
+            maxSwipeSize = CGFloat(imagePaths.count) * collectionView.frame.width
+        }else{
+            maxSwipeSize = CGFloat(imagePaths.count) * collectionView.frame.height
+        }
+        
         // Cell Size
         flowLayout?.itemSize = self.frame.size
         // Page Frame
