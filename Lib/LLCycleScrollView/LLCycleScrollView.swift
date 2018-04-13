@@ -24,7 +24,7 @@ public enum PageControlPosition {
     case right
 }
 
-@objc protocol LLCycleScrollViewDelegate: class {
+@objc public protocol LLCycleScrollViewDelegate: class {
     @objc func cycleScrollView(_ cycleScrollView: LLCycleScrollView, didSelectItemIndex index: NSInteger)
 }
 
@@ -248,7 +248,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     open var lldidSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil
     
     // Delegate
-    weak var delegate: LLCycleScrollViewDelegate?
+    open weak var delegate: LLCycleScrollViewDelegate?
     
     // MARK: Private
     // Identifier
@@ -298,9 +298,6 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     
     // 空数据页面显示占位图
     fileprivate var coverViewImage: UIImage! = UIImage(named: "LLCycleScrollView.bundle/llplaceholder.png", in: Bundle(for: LLCycleScrollView.self), compatibleWith: nil)
-    
-    
-    
     
     // MARK: Init
     override internal init(frame: CGRect) {
