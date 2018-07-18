@@ -26,6 +26,7 @@ public enum PageControlPosition {
 
 @objc public protocol LLCycleScrollViewDelegate: class {
     @objc func cycleScrollView(_ cycleScrollView: LLCycleScrollView, didSelectItemIndex index: NSInteger)
+    @objc optional func cycleScrollView(_ cycleScrollView: LLCycleScrollView, scrollTo index: NSInteger)
 }
 
 public typealias LLdidSelectItemAtIndexClosure = (NSInteger) -> Void
@@ -207,10 +208,11 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
                 autoScroll = self.autoScroll!
             }else{
                 collectionView.isScrollEnabled = false
+                invalidateTimer()
             }
             
             setupPageControl()
-            
+
             collectionView.reloadData()
         }
     }
@@ -399,6 +401,10 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
         
         if customPageControl != nil {
             customPageControl?.removeFromSuperview()
+        }
+        
+        if imagePaths.count <= 1 {
+            return
         }
         
         if customPageControlStyle == .none {
@@ -674,7 +680,6 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
                 (customPageControl as! LLSnakePageControl).progress = progress
             }
         }
-        
     }
     
     // MARK: ScrollView Begin Drag
@@ -686,9 +691,23 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     
     // MARK: ScrollView End Drag
     open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if imagePaths.count == 0 { return }
+        let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
+        
+        // 滚动后的回调协议
+        delegate?.cycleScrollView?(self, scrollTo: indexOnPageControl)
+        
         if autoScroll! {
             setupTimer()
         }
     }
- 
+    
+    // MARK: ScrollView Did End Scrolling Animation
+    open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if imagePaths.count == 0 { return }
+        let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
+        
+        // 滚动后的回调协议
+        delegate?.cycleScrollView?(self, scrollTo: indexOnPageControl)
+    }
 }

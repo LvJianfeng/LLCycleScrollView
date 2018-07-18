@@ -42,8 +42,8 @@ class ViewController: UIViewController {
         
         
         // Storyboard Demo
-        self.storyBoardBanner.imagePaths = imagesURLStrings
-        self.storyBoardBanner.titles = titles
+        //self.storyBoardBanner.imagePaths = imagesURLStrings
+        // self.storyBoardBanner.titles = titles
         
         // 新增图片显示控制
         self.storyBoardBanner.imageViewContentMode = .scaleToFill
@@ -60,76 +60,81 @@ class ViewController: UIViewController {
         
         
         
-        // 纯文本demo
-        let titleDemo = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height:70)) { (index) in
-            print("当前点击文本的位置为:\(index)")
-        }
+//        // 纯文本demo
+//        let titleDemo = LLCycleScrollView.llCycleScrollViewWithTitles(frame: CGRect.init(x: 0, y: self.storyBoardBanner.ll_y + 190, width: w, height:70)) { (index) in
+//            print("当前点击文本的位置为:\(index)")
+//        }
+//
+//        titleDemo.customPageControlStyle = .none
+//        titleDemo.scrollDirection = .vertical
+//        titleDemo.font = UIFont.systemFont(ofSize: 13)
+//        titleDemo.textColor = UIColor.white
+//        titleDemo.titleBackgroundColor = UIColor.red
+//        titleDemo.numberOfLines = 2
+//        // 文本　Leading约束
+//        titleDemo.titleLeading = 30
+//        scrollView.addSubview(titleDemo)
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+//            titleDemo.titles = titles
+//        }
         
-        titleDemo.customPageControlStyle = .none
-        titleDemo.scrollDirection = .vertical
-        titleDemo.font = UIFont.systemFont(ofSize: 13)
-        titleDemo.textColor = UIColor.white
-        titleDemo.titleBackgroundColor = UIColor.red
-        titleDemo.numberOfLines = 2
-        // 文本　Leading约束
-        titleDemo.titleLeading = 30
-        scrollView.addSubview(titleDemo)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            titleDemo.titles = titles
-        }
-        
-        // Demo--点击回调
-        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y:titleDemo.ll_y + 80, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:nil, didSelectItemAtIndex: { index in
-            print("当前点击图片的位置为:\(index)")
-        })
-        
-        bannerDemo.lldidSelectItemAtIndex = { index in
-            
-        }
-        bannerDemo.customPageControlStyle = .fill
-        bannerDemo.customPageControlInActiveTintColor = UIColor.red
-        bannerDemo.pageControlPosition = .left
-        bannerDemo.pageControlLeadingOrTrialingContact = 28
-        
-        // 下边约束
-        bannerDemo.pageControlBottom = 15
-        scrollView.addSubview(bannerDemo)
+//        // Demo--点击回调
+//        let bannerDemo = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y:titleDemo.ll_y + 80, width: w, height: 200), imageURLPaths: imagesURLStrings, titles:nil, didSelectItemAtIndex: { index in
+//            print("当前点击图片的位置为:\(index)")
+//        })
+//
+//        bannerDemo.lldidSelectItemAtIndex = { index in
+//
+//        }
+//        bannerDemo.customPageControlStyle = .fill
+//        bannerDemo.customPageControlInActiveTintColor = UIColor.red
+//        bannerDemo.pageControlPosition = .left
+//        bannerDemo.pageControlLeadingOrTrialingContact = 28
+//
+//        // 下边约束
+//        bannerDemo.pageControlBottom = 15
+//        scrollView.addSubview(bannerDemo)
 
         
         
         
-        // Demo--延时加载数据之滚动方向控制
-        let bannerDemo1 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo.ll_y + 205, width: w, height: 200))
-        // 垂直滚动
-        bannerDemo1.scrollDirection = .vertical
-        bannerDemo1.customPageControlStyle = .snake
-        scrollView.addSubview(bannerDemo1)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
-            bannerDemo1.imagePaths = imagesURLStrings
-        }
-        
+//        // Demo--延时加载数据之滚动方向控制
+//        let bannerDemo1 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo.ll_y + 205, width: w, height: 200))
+//        // 垂直滚动
+//        bannerDemo1.scrollDirection = .vertical
+//        bannerDemo1.customPageControlStyle = .snake
+//        scrollView.addSubview(bannerDemo1)
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+//            bannerDemo1.imagePaths = imagesURLStrings
+//        }
+//
         
 
         // Demo--其他属性
-        bannerDemo2 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo1.ll_y + 205, width: w, height: 200))
+        bannerDemo2 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: 205, width: w, height: 200)) // bannerDemo1.ll_y +
         // 滚动间隔时间
         bannerDemo2.autoScrollTimeInterval = 3.0
         // 加载状态图
         bannerDemo2.placeHolderImage = #imageLiteral(resourceName: "s1")
         // 没有数据时候的封面图
         bannerDemo2.coverImage = #imageLiteral(resourceName: "s2")
-        bannerDemo2.customPageControlStyle = .none
+//        bannerDemo2.customPageControlStyle = .none
+        bannerDemo2.delegate = self
         scrollView.addSubview(bannerDemo2)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             self.bannerDemo2.imagePaths = imagesURLStrings
-            self.bannerDemo2.titles = titles
+//            self.bannerDemo2.titles = titles
         }
-        scrollView.contentSize = CGSize.init(width: 0, height: bannerDemo2.ll_y+220)
+//        scrollView.contentSize = CGSize.init(width: 0, height: bannerDemo2.ll_y+220)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.bannerDemo2.imagePaths = ["s3.jpg", "s3.jpg"]
     }
 }
 
