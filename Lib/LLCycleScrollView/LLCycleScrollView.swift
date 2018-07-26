@@ -673,11 +673,11 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
             }
             // progress
             if customPageControlStyle == .fill {
-                (customPageControl as! LLFilledPageControl).progress = progress
+                (customPageControl as? LLFilledPageControl)?.progress = progress
             }else if customPageControlStyle == .pill {
-                (customPageControl as! LLPillPageControl).progress = progress
+                (customPageControl as? LLPillPageControl)?.progress = progress
             }else if customPageControlStyle == .snake {
-                (customPageControl as! LLSnakePageControl).progress = progress
+                (customPageControl as? LLSnakePageControl)?.progress = progress
             }
         }
     }
