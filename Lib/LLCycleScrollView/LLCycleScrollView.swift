@@ -355,6 +355,21 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     }
     
     
+    /// 将要添加到 window 上时
+    ///
+    /// - Parameter newWindow: 新的 window
+    /// 添加到window 上时 开启 timer, 从 window 上移除时, 移除 timer
+    override open func willMove(toWindow newWindow: UIWindow?) {
+        super.willMove(toWindow: newWindow)
+        if newWindow != nil {
+            if autoScroll! && infiniteLoop! {
+                setupTimer()
+            }
+        } else {
+            self.invalidateTimer()
+        }
+    }
+    
     // MARK: -
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -527,6 +542,7 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     
     // MARK: Actions
     @objc func automaticScroll() {
+        print("-----------------------------------------------")
         if totalItemsCount == 0 {return}
         let targetIndex = currentIndex() + 1
         scollToIndex(targetIndex: targetIndex)
