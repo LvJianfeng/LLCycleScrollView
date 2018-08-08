@@ -542,7 +542,6 @@ open class LLCycleScrollView: UIView, UICollectionViewDelegate, UICollectionView
     
     // MARK: Actions
     @objc func automaticScroll() {
-        print("-----------------------------------------------")
         if totalItemsCount == 0 {return}
         let targetIndex = currentIndex() + 1
         scollToIndex(targetIndex: targetIndex)
