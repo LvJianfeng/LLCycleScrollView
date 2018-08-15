@@ -146,7 +146,6 @@
 				3F56C0E31DE4404600904CF8 /* Frameworks */,
 				3F56C0E41DE4404600904CF8 /* Resources */,
 				89A069E096BD211A67900271 /* [CP] Embed Pods Frameworks */,
-				901E06080BA26BA4F2B8B5A9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,21 +241,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LLCycleScrollView/Pods-LLCycleScrollView-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		901E06080BA26BA4F2B8B5A9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LLCycleScrollView/Pods-LLCycleScrollView-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
