@@ -30,12 +30,13 @@ Swift4 请使用1.4.x版本
 * 支持纯文本
 * 支持CustomPageControl位置设置
 * 支持协议
-
+* 支持左右箭头点击风格
 
 ## Update
 
 版本信息 | 更新描述
 ----    |  ------
+1.5.0   | * 支持左右方向箭头点击风格<br>* 优化部分代码结构<br>* 优化定时器引用问题
 1.4.9   | * 支持图片发生切换回调协议<br>* 修复图片更新为一张图时滚动行为
 1.4.8   | * fixed #37 'delegate' is inaccessible due to 'internal' protection level
 1.4.7   | * 修复反向滑动问题<br>* 修改纯文本下高度设置问题；

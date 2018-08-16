@@ -96,8 +96,7 @@ class ViewController: UIViewController {
         scrollView.addSubview(bannerDemo)
 
         
-        
-        
+        /*
         // Demo--延时加载数据之滚动方向控制
         let bannerDemo1 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo.ll_y + 205, width: w, height: 200))
         // 垂直滚动
@@ -107,9 +106,26 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
             bannerDemo1.imagePaths = imagesURLStrings
         }
+         */
+        
+        // Demo--带左右箭头
+        let bannerDemo1 = LLCycleScrollView.llCycleScrollViewWithArrow(CGRect.init(x: 0, y: bannerDemo.ll_y + 205, width: w, height: 200), arrowLRImages: [UIImage.init(named: "ico-two-left-arrow")!, UIImage.init(named: "ico-two-right-arrow")!], imageURLPaths: imagesURLStrings, titles:nil, didSelectItemAtIndex: { index in
+            print("当前点击图片的位置为:\(index)")
+        })
+        
+        bannerDemo1.lldidSelectItemAtIndex = { index in
+            
+        }
+        bannerDemo1.customPageControlStyle = .snake
+        bannerDemo1.customPageControlInActiveTintColor = UIColor.red
+        bannerDemo1.pageControlPosition = .center
+        bannerDemo1.pageControlLeadingOrTrialingContact = 28
+        
+        // 下边约束
+        bannerDemo.pageControlBottom = 15
+        scrollView.addSubview(bannerDemo1)
         
         
-
         // Demo--其他属性
         bannerDemo2 = LLCycleScrollView.llCycleScrollViewWithFrame(CGRect.init(x: 0, y: bannerDemo1.ll_y + 205, width: w, height: 200))
         // 滚动间隔时间
