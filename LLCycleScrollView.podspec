@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "LLCycleScrollView"
-  s.version      = "1.5.0"
+  s.version      = "1.5.1"
   s.summary      = "几行代码实现轮播图Swift"
   s.homepage     = "https://github.com/LvJianfeng/LLCycleScrollView"
   s.license      = "MIT"
@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.resource  = "Lib/LLCycleScrollView.bundle"
   s.dependency 'Kingfisher'
   s.requires_arc = true
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
 end

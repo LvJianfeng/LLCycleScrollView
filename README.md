@@ -14,6 +14,8 @@ Swift3 请使用1.3.x版本
 
 Swift4 请使用1.4.x版本
 
+Swift4.2 请使用1.5.1+版本
+
 ## Support
 
 * 支持纯图片
@@ -36,6 +38,7 @@ Swift4 请使用1.4.x版本
 
 版本信息 | 更新描述
 ----    |  ------
+1.5.1   | * 迁移Swift 4.2
 1.5.0   | * 支持左右方向箭头点击风格<br>* 优化部分代码结构<br>* 优化定时器引用问题
 1.4.9   | * 支持图片发生切换回调协议<br>* 修复图片更新为一张图时滚动行为
 1.4.8   | * fixed #37 'delegate' is inaccessible due to 'internal' protection level

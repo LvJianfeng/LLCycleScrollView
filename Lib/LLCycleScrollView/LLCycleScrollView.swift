@@ -96,7 +96,7 @@ open class LLCycleScrollView: UIView {
     }
     
     /// 滚动方向，默认horizontal
-    open var scrollDirection: UICollectionViewScrollDirection? = .horizontal {
+    open var scrollDirection: UICollectionView.ScrollDirection? = .horizontal {
         didSet {
             flowLayout?.scrollDirection = scrollDirection!
             if scrollDirection == .horizontal {
@@ -139,7 +139,7 @@ open class LLCycleScrollView: UIView {
     
     // MARK: ImageView
     /// Content Mode
-    open var imageViewContentMode: UIViewContentMode? {
+    open var imageViewContentMode: UIView.ContentMode? {
         didSet {
             collectionView.reloadData()
         }
@@ -277,7 +277,7 @@ open class LLCycleScrollView: UIView {
     fileprivate var cellHeight: CGFloat = 56
     
     /// Collection滚动方向
-    fileprivate var position: UICollectionViewScrollPosition! = .centeredHorizontally
+    fileprivate var position: UICollectionView.ScrollPosition! = .centeredHorizontally
     
     /// 加载状态图
     fileprivate var placeHolderViewImage: UIImage! = UIImage(named: "LLCycleScrollView.bundle/llplaceholder.png", in: Bundle(for: LLCycleScrollView.self), compatibleWith: nil)
@@ -688,7 +688,7 @@ extension LLCycleScrollView {
             return 0
         }
         var index = 0
-        if flowLayout?.scrollDirection == UICollectionViewScrollDirection.horizontal {
+        if flowLayout?.scrollDirection == UICollectionView.ScrollDirection.horizontal {
             index = NSInteger(collectionView.contentOffset.x + (flowLayout?.itemSize.width)! * 0.5)/NSInteger((flowLayout?.itemSize.width)!)
         }else {
             index = NSInteger(collectionView.contentOffset.y + (flowLayout?.itemSize.height)! * 0.5)/NSInteger((flowLayout?.itemSize.height)!)
