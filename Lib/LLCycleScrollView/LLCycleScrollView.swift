@@ -52,9 +52,9 @@ open class LLCycleScrollView: UIView {
                 invalidateTimer()
             }
             
-            setupPageControl()
-            
             collectionView.reloadData()
+            
+            setupPageControl()
         }
     }
     
