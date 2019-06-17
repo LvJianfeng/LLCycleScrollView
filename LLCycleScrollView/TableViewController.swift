@@ -34,7 +34,9 @@ class TableViewController: UITableViewController {
         // 文本　Leading约束
         titleHeaderDemo.titleLeading = 30
         tableView.tableHeaderView = titleHeaderDemo
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2)) {
+        
+        /// 延时
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             titleHeaderDemo.titles = self.titles
         }
     }
@@ -58,7 +60,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CELL", for: indexPath)
 
-        cell.textLabel?.text = "当前属于第(\(indexPath.row)行"
+        cell.textLabel?.text = "当前属于第(\(indexPath.row))行"
 
         return cell
     }
