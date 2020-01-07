@@ -802,6 +802,7 @@ extension LLCycleScrollView: UIScrollViewDelegate {
     }
     
     open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        cycleScrollViewScrollToIndex()
         if autoScroll {
             invalidateTimer()
         }
@@ -809,26 +810,34 @@ extension LLCycleScrollView: UIScrollViewDelegate {
     
     open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if imagePaths.count == 0 { return }
-        let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
         
         // 滚动后的回调协议
-        delegate?.cycleScrollView?(self, scrollTo: indexOnPageControl)
+        if !decelerate { cycleScrollViewScrollToIndex() }
         
         if autoScroll {
             setupTimer()
         }
     }
     
+    open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        cycleScrollViewScrollToIndex()
+    }
+    
     open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         if imagePaths.count == 0 { return }
-        let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
         
-        // 滚动后的回调协议
-        delegate?.cycleScrollView?(self, scrollTo: indexOnPageControl)
+        cycleScrollViewScrollToIndex()
         
         if dtimer == nil && autoScroll {
             setupTimer()
         }
+    }
+    
+    fileprivate func cycleScrollViewScrollToIndex() {
+        let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
+        
+        // 滚动后的回调协议
+        delegate?.cycleScrollView?(self, scrollTo: indexOnPageControl)
     }
     
     fileprivate func calcScrollViewToScroll(_ scrollView: UIScrollView) {
