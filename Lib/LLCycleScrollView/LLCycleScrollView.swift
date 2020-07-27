@@ -28,8 +28,18 @@ public enum PageControlPosition {
 
 /// LLCycleScrollViewDelegate
 @objc public protocol LLCycleScrollViewDelegate: class {
+    
     @objc func cycleScrollView(_ cycleScrollView: LLCycleScrollView, didSelectItemIndex index: NSInteger)
+    /// 开始拖拽的页码
+    @objc optional func cycleScrollView(_ cycleScrollView: LLCycleScrollView, scrollFrom index: NSInteger)
+    /// 拖到目的页码
     @objc optional func cycleScrollView(_ cycleScrollView: LLCycleScrollView, scrollTo index: NSInteger)
+    
+    /// 滚动页内偏移量
+    /// - Parameters:
+    ///   - index: 左边页面
+    ///   - offSet: 偏移量大小
+    @objc optional func cycleScrollViewDidScroll(_ cycleScrollView: LLCycleScrollView, index: NSInteger, offSet: CGFloat)
 }
 
 /// Closure
@@ -799,36 +809,64 @@ extension LLCycleScrollView: UIScrollViewDelegate {
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if imagePaths.count == 0 { return }
         calcScrollViewToScroll(scrollView)
+        
+        if let _ = delegate?.cycleScrollViewDidScroll {
+            var offSet: CGFloat = 0
+            var index: NSInteger = 1
+            if flowLayout?.scrollDirection == UICollectionView.ScrollDirection.horizontal {
+                index = NSInteger(collectionView.contentOffset.x / flowLayout!.itemSize.width)
+                offSet = collectionView.contentOffset.x -  flowLayout!.itemSize.width * CGFloat(index)
+            }else {
+                index = NSInteger(collectionView.contentOffset.y / flowLayout!.itemSize.height)
+                offSet = collectionView.contentOffset.y - flowLayout!.itemSize.height * CGFloat(index)
+            }
+            
+            let currentIndex = pageControlIndexWithCurrentCellIndex(index: NSInteger(index))
+            delegate?.cycleScrollViewDidScroll?(self, index: currentIndex, offSet: offSet)
+        }
+        
     }
     
     open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        cycleScrollViewScrollToIndex()
         if autoScroll {
             invalidateTimer()
         }
+        
+         let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
+        delegate?.cycleScrollView?(self, scrollFrom: indexOnPageControl)
     }
     
     open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if imagePaths.count == 0 { return }
-        let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
         
         // 滚动后的回调协议
-        delegate?.cycleScrollView?(self, scrollTo: indexOnPageControl)
+        if !decelerate { cycleScrollViewScrollToIndex() }
         
         if autoScroll {
             setupTimer()
         }
     }
     
+    open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        cycleScrollViewScrollToIndex()
+    }
+    
     open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         if imagePaths.count == 0 { return }
-        let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
         
-        // 滚动后的回调协议
-        delegate?.cycleScrollView?(self, scrollTo: indexOnPageControl)
+        cycleScrollViewScrollToIndex()
         
         if dtimer == nil && autoScroll {
             setupTimer()
         }
+    }
+    
+    fileprivate func cycleScrollViewScrollToIndex() {
+        let indexOnPageControl = pageControlIndexWithCurrentCellIndex(index: currentIndex())
+        
+        // 滚动后的回调协议
+        delegate?.cycleScrollView?(self, scrollTo: indexOnPageControl)
     }
     
     fileprivate func calcScrollViewToScroll(_ scrollView: UIScrollView) {
