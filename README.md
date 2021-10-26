@@ -5,6 +5,9 @@
 
 <img src="https://github.com/LvJianfeng/LLCycleScrollView/blob/master/2.gif" width="400" align="center">  <img src="https://github.com/LvJianfeng/LLCycleScrollView/blob/master/screen.gif" width="400" align="center">
 
+## 实在抱歉
+该仓库目前停更已久，代码老旧，作为iOS开发人员由于进入的某二线，说是新一线的城市，岗位的需求急剧下降，目前被发配开发区块链、开发小程序、开发大前端、开发Java.....咳咳，总之很苦逼了。未来有时间我争取改造或者使用SwiftUI来进行开发，届时会第一时间提交，感谢朋友一路陪伴，学习使用，代码质量不足之处居多，一起加油。
+
 ## Issues
 如果使用过程中，有什么问题欢迎issues。
 
