@@ -27,7 +27,7 @@ public enum PageControlPosition {
 }
 
 /// LLCycleScrollViewDelegate
-@objc public protocol LLCycleScrollViewDelegate: class {
+@objc public protocol LLCycleScrollViewDelegate: AnyObject {
     
     @objc func cycleScrollView(_ cycleScrollView: LLCycleScrollView, didSelectItemIndex index: NSInteger)
     /// 开始拖拽的页码
@@ -343,7 +343,7 @@ extension LLCycleScrollView {
     ///   - titles: Title Array
     ///   - didSelectItemAtIndex: Closure
     /// - Returns: LLCycleScrollView
-    open class func llCycleScrollViewWithFrame(_ frame: CGRect, imageURLPaths: Array<String>? = [], titles:Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
+    public class func llCycleScrollViewWithFrame(_ frame: CGRect, imageURLPaths: Array<String>? = [], titles:Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
         let llcycleScrollView: LLCycleScrollView = LLCycleScrollView.init(frame: frame)
         // Nil
         llcycleScrollView.imagePaths = []
@@ -371,7 +371,7 @@ extension LLCycleScrollView {
     ///   - titles: Title Array
     ///   - didSelectItemAtIndex: Closure
     /// - Returns: LLCycleScrollView
-    open class func llCycleScrollViewWithTitles(frame: CGRect, backImage: UIImage? = nil, titles: Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
+    public class func llCycleScrollViewWithTitles(frame: CGRect, backImage: UIImage? = nil, titles: Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
         let llcycleScrollView: LLCycleScrollView = LLCycleScrollView.init(frame: frame)
         // Nil
         llcycleScrollView.titles = []
@@ -405,7 +405,7 @@ extension LLCycleScrollView {
     ///   - titles: Title Array
     ///   - didSelectItemAtIndex: Closure
     /// - Returns: LLCycleScrollView
-    open class func llCycleScrollViewWithArrow(_ frame: CGRect, arrowLRImages: [UIImage], arrowLRFrame: [CGRect]? = nil, imageURLPaths: Array<String>? = [], titles:Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
+    public class func llCycleScrollViewWithArrow(_ frame: CGRect, arrowLRImages: [UIImage], arrowLRFrame: [CGRect]? = nil, imageURLPaths: Array<String>? = [], titles:Array<String>? = [], didSelectItemAtIndex: LLdidSelectItemAtIndexClosure? = nil) -> LLCycleScrollView {
         let llcycleScrollView: LLCycleScrollView = LLCycleScrollView.init(frame: frame)
         // Nil
         llcycleScrollView.imagePaths = []
@@ -707,9 +707,9 @@ extension LLCycleScrollView {
         }
         var index = 0
         if flowLayout?.scrollDirection == UICollectionView.ScrollDirection.horizontal {
-            index = NSInteger(collectionView.contentOffset.x + (flowLayout?.itemSize.width)! * 0.5)/NSInteger((flowLayout?.itemSize.width)!)
+            index = NSInteger(collectionView.contentOffset.x / (flowLayout?.itemSize.width)!) < 0 ? 0 :NSInteger(collectionView.contentOffset.x / (flowLayout?.itemSize.width)!)
         }else {
-            index = NSInteger(collectionView.contentOffset.y + (flowLayout?.itemSize.height)! * 0.5)/NSInteger((flowLayout?.itemSize.height)!)
+            index = NSInteger(collectionView.contentOffset.y / (flowLayout?.itemSize.height)!) < 0 ? 0 :NSInteger(collectionView.contentOffset.y / (flowLayout?.itemSize.height)!)
         }
         return index
     }
